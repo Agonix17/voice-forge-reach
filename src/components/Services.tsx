@@ -1,0 +1,109 @@
+const services = [
+  {
+    name: "Vox-Voice",
+    tag: "Core",
+    title: "AI Voice Cloning + Sync",
+    description: "Your exact voice, fluent Russian. Lip-synced timing, preserved energy, zero robotic artifacts.",
+    features: ["Voice DNA capture", "Lip-sync precision", "Emotion preservation"],
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Visual Localize",
+    tag: "Visual",
+    title: "Thumbnail Re-design",
+    description: "Native Cyrillic typography, culturally-tuned color & hook. CTR-optimized for the RU algorithm.",
+    features: ["Native typography", "A/B variant pack", "CTR optimization"],
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Meta-Data SEO",
+    tag: "Growth",
+    title: "Localized Titles & Tags",
+    description: "Keyword-researched titles, descriptions and tags built around what RU viewers actually search.",
+    features: ["RU keyword research", "Tag optimization", "Description copy"],
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Smart Captions",
+    tag: "Engagement",
+    title: "Dynamic Subtitles",
+    description: "Word-by-word kinetic captions that boost retention on mobile. Built for the RU mobile-first audience.",
+    features: ["Kinetic styling", "Auto-timing", "Brand-matched fonts"],
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+      </svg>
+    ),
+  },
+];
+
+export function Services() {
+  return (
+    <section id="services" className="py-24 md:py-32 relative">
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+      <div className="container mx-auto px-6 relative">
+        <div className="max-w-2xl mb-16">
+          <div className="inline-block text-xs font-mono text-primary uppercase tracking-widest mb-4">
+            À La Carte Services
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            Pick the modules that <span className="gradient-text">move your needle.</span>
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Stack them, mix them, scale them. Every service is built specifically for Minecraft creators.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {services.map((s, i) => (
+            <div
+              key={s.name}
+              className="group relative rounded-2xl border border-border bg-surface p-8 overflow-hidden hover:border-primary/40 transition-all"
+              style={{ animation: `var(--animate-fade-up)`, animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
+            >
+              <div className="absolute -top-20 -right-20 w-48 h-48 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                    {s.icon}
+                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                    {s.tag}
+                  </span>
+                </div>
+
+                <div className="text-sm font-mono text-primary mb-1">{s.name}</div>
+                <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">{s.description}</p>
+
+                <ul className="space-y-2">
+                  {s.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
