@@ -1,33 +1,62 @@
-const stats = [
+import { TrendingUp } from "lucide-react";
+
+type Giant = {
+  name: string;
+  handle: string;
+  initials: string;
+  videos: { title: string; views: string }[];
+};
+
+const GIANTS: Giant[] = [
   {
-    metric: "+45%",
-    title: "View Increase",
-    description: "Through optimized metadata, titles, and thumbnails tuned for the Russian YouTube algorithm.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8m0 0v6m0-6h-6"/>
-      </svg>
-    ),
+    name: "MrBeast Gaming",
+    handle: "@MrBeastGaming",
+    initials: "MB",
+    videos: [
+      { title: "$1,000,000 Minecraft Battle Royale", views: "82M" },
+      { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
+      { title: "I Survived 100 Days in Hardcore", views: "44M" },
+    ],
   },
   {
-    metric: "Tier-1",
-    title: "Revenue Regions",
-    description: "Targeting CIS expats in the US, Germany & UK — high-CPM markets with massive watch time.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.66 0-3 .9-3 2s1.34 2 3 2 3 .9 3 2-1.34 2-3 2m0-8v1m0 7v1m8-5a8 8 0 11-16 0 8 8 0 0116 0z"/>
-      </svg>
-    ),
+    name: "Dream",
+    handle: "@Dream",
+    initials: "DR",
+    videos: [
+      { title: "Minecraft Manhunt vs 4 Hunters", views: "120M" },
+      { title: "Speedrunner vs Hunters Finale", views: "89M" },
+      { title: "Beating Minecraft Blindfolded", views: "37M" },
+    ],
   },
   {
-    metric: "100%",
-    title: "Brand Safety",
-    description: "Manual slang & context checks by native Minecraft creators. Zero awkward translations.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-      </svg>
-    ),
+    name: "Karl Jacobs",
+    handle: "@KarlJacobs",
+    initials: "KJ",
+    videos: [
+      { title: "I Hosted a Minecraft Tournament", views: "12M" },
+      { title: "Tales of the SMP Compilation", views: "9.4M" },
+      { title: "Last to Leave the Circle", views: "7.8M" },
+    ],
+  },
+  {
+    name: "Athos",
+    handle: "@Athos",
+    initials: "AT",
+    videos: [
+      { title: "Building the Largest Mob Farm", views: "18M" },
+      { title: "Redstone Engineering Marvels", views: "14M" },
+      { title: "I Made a Working Computer in MC", views: "11M" },
+    ],
+  },
+  {
+    name: "Maizen",
+    handle: "@Maizen",
+    initials: "MZ",
+    videos: [
+      { title: "JJ and Mikey Survival Stories", views: "240M" },
+      { title: "Mikey vs JJ Build Battle", views: "180M" },
+      { title: "Security House Challenge", views: "150M" },
+    ],
   },
 ];
 
@@ -35,36 +64,83 @@ export function Opportunity() {
   return (
     <section id="opportunity" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-6">
-        <div className="max-w-2xl mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-block text-xs font-mono text-primary uppercase tracking-widest mb-4">
-            Market Opportunity
+            Proof
           </div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-            The Russian Minecraft market is{" "}
-            <span className="gradient-text">starving</span> for English content.
+            The Best Are Already <span className="gradient-text">Dominating the Russian Market</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            We turn your existing library into a second income stream — without you ever touching a microphone.
+            Top creators quietly localize their videos and unlock 8-figure view counts. You can too.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.title}
-              className="group relative rounded-2xl border border-border bg-surface p-8 hover:border-primary/40 hover:bg-surface-elevated transition-all"
-              style={{ animation: `var(--animate-fade-up)`, animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {GIANTS.map((g, i) => (
+            <article
+              key={g.name}
+              className="group rounded-2xl border border-border bg-surface p-5 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300"
+              style={{ animation: "var(--animate-fade-up)", animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                {stat.icon}
-              </div>
-              <div className="text-5xl font-bold gradient-text mb-2 tracking-tight">{stat.metric}</div>
-              <div className="text-lg font-semibold mb-2">{stat.title}</div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{stat.description}</p>
+              <header className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-primary-foreground font-bold text-sm">
+                    {g.initials}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base leading-tight">{g.name}</h3>
+                    <p className="text-xs text-muted-foreground">{g.handle}</p>
+                  </div>
+                </div>
+                <div className="inline-flex items-center gap-1 rounded-full bg-primary/15 border border-primary/30 px-2.5 py-1 text-[10px] font-bold text-primary">
+                  <TrendingUp className="w-3 h-3" />
+                  +30%
+                </div>
+              </header>
 
-              <div className="absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {g.videos.map((v, idx) => (
+                  <div
+                    key={idx}
+                    className="aspect-video rounded-md bg-gradient-to-br from-surface-elevated to-background relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
+                  >
+                    <div className="absolute inset-0 grid-pattern opacity-40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-primary bg-background/80 px-1 py-0.5 rounded">
+                      {v.views}
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-full bg-background/70 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-primary ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between text-xs pt-3 border-t border-border">
+                <span className="text-muted-foreground">Global Watch Time</span>
+                <span className="font-bold text-primary">+30% uplift</span>
+              </div>
+            </article>
           ))}
+
+          {/* CTA card */}
+          <div className="rounded-2xl border-2 border-dashed border-primary/40 bg-primary/5 p-5 flex flex-col items-center justify-center text-center min-h-[280px]">
+            <div className="text-4xl font-bold gradient-text mb-2">You're Next</div>
+            <p className="text-sm text-muted-foreground mb-5 max-w-xs">
+              Stop leaving 40M viewers on the table. Join the giants for $75.
+            </p>
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow"
+            >
+              Claim Your Pack →
+            </a>
+          </div>
         </div>
       </div>
     </section>
