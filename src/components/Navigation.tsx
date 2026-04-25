@@ -29,17 +29,17 @@ export function Navigation() {
           </a>
 
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#opportunity" className="hover:text-foreground transition-colors">Opportunity</a>
+            <a href="#opportunity" className="hover:text-foreground transition-colors">Giants</a>
             <a href="#services" className="hover:text-foreground transition-colors">Services</a>
-            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
+            <a href="#pricing" className="hover:text-foreground transition-colors">$75 Pack</a>
             <a href="#why" className="hover:text-foreground transition-colors">Why Us</a>
           </div>
 
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors shadow-glow whitespace-nowrap"
           >
-            Get Started
+            Get My Free 60s Demo
           </a>
         </nav>
       </div>

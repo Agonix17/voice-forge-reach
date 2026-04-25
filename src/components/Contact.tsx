@@ -57,23 +57,10 @@ export function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Estimated Video Length</label>
-                  <select
-                    required
-                    className="w-full bg-input border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                  >
-                    <option value="">Select average length</option>
-                    <option>Under 5 minutes</option>
-                    <option>5–10 minutes</option>
-                    <option>10–20 minutes</option>
-                    <option>20+ minutes</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Anything we should know? (optional)</label>
+                  <label className="block text-sm font-medium mb-2">Message</label>
                   <textarea
-                    rows={3}
-                    placeholder="Goals, target regions, current numbers..."
+                    rows={4}
+                    placeholder="Which video do you want localized first? Any goals or target regions?"
                     className="w-full bg-input border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
                   />
                 </div>
@@ -81,7 +68,7 @@ export function Contact() {
                   type="submit"
                   className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-lg hover:bg-primary-glow transition-all shadow-glow hover:scale-[1.02]"
                 >
-                  Get My Strategy →
+                  Get My Free 60s Demo →
                 </button>
                 <p className="text-xs text-center text-muted-foreground">
                   Free analysis. No credit card. No spam.

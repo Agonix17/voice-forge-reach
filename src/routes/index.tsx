@@ -12,10 +12,10 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "VoxLocalize — AI Video Localization for Minecraft Creators" },
-      { name: "description", content: "Scale your Minecraft channel to 40M+ Russian speakers with AI voice cloning, native thumbnails, and SEO. Premium localization for top YouTube creators." },
-      { property: "og:title", content: "VoxLocalize — Global Reach Without the Language Barrier" },
-      { property: "og:description", content: "AI voice cloning, slang adaptation, and full meta-data SEO for Minecraft YouTubers expanding into the Russian market." },
+      { title: "VoxLocalize — One Video. 40M New Viewers. $75." },
+      { name: "description", content: "Premium AI voice cloning + native Russian dub for Minecraft YouTubers. The $75 Full Access Pack: pro dub, free localized thumbnail, free SEO meta-data." },
+      { property: "og:title", content: "VoxLocalize — One Video. 40M New Viewers. $75." },
+      { property: "og:description", content: "Hear the difference between YouTube auto-dub and a real human-grade localization. $75 full access pack for Minecraft creators." },
     ],
   }),
 });

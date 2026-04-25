@@ -1,22 +1,60 @@
 import { useState } from "react";
+import { Check, X, Mic } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
+type Mode = "original" | "auto" | "vox";
+
+const MODES: Record<Mode, {
+  label: string;
+  badge: string;
+  caption: string;
+  waveColor: string;
+  ringClass: string;
+  badgeClass: string;
+  quality: string;
+  qualityClass: string;
+}> = {
+  original: {
+    label: "Original EN",
+    badge: "Source",
+    caption: "\"Watch this insane redstone trap I just built — it's actually broken!\"",
+    waveColor: "var(--muted-foreground)",
+    ringClass: "ring-border",
+    badgeClass: "bg-surface-elevated text-muted-foreground border-border",
+    quality: "Native Creator Voice",
+    qualityClass: "text-muted-foreground",
+  },
+  auto: {
+    label: "YouTube Auto-Dub",
+    badge: "Bad Quality",
+    caption: "\"Посмотрите эту безумную ловушку из редстоуна, которую я построил.\"",
+    waveColor: "var(--destructive)",
+    ringClass: "ring-destructive/60",
+    badgeClass: "bg-destructive/15 text-destructive border-destructive/40",
+    quality: "Robotic · Flat · Wrong slang",
+    qualityClass: "text-destructive",
+  },
+  vox: {
+    label: "VoxLocalize Dub",
+    badge: "Premium",
+    caption: "\"Зацени, какую жёсткую ловушку на редстоуне я заделал — её реально сломать!\"",
+    waveColor: "var(--primary)",
+    ringClass: "ring-primary",
+    badgeClass: "bg-primary/15 text-primary border-primary/40",
+    quality: "Cloned voice · Native slang · 99.2% match",
+    qualityClass: "text-primary",
+  },
+};
+
 export function Hero() {
-  const [lang, setLang] = useState<"EN" | "RU">("EN");
-  const [playing, setPlaying] = useState(false);
+  const [mode, setMode] = useState<Mode>("original");
+  const m = MODES[mode];
 
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <img
-          src={heroBg}
-          alt=""
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+        <img src={heroBg} alt="" width={1920} height={1080} className="w-full h-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/85 to-background" />
         <div className="absolute inset-0 grid-pattern opacity-50" />
       </div>
 
@@ -29,33 +67,27 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              AI Voice Localization for Minecraft Creators
+              Premium AI Dub for Minecraft Creators
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-              Global Reach
+              One Video.
               <br />
-              Without the
+              <span className="gradient-text">40 Million</span> New Viewers.
               <br />
-              <span className="gradient-text">Language Barrier.</span>
+              <span className="text-foreground">$75.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Scale your Minecraft channel to <span className="text-foreground font-semibold">40M+ Russian speakers</span>. We clone your voice and adapt your slang with AI precision. Zero effort, maximum ROI.
+              Experience the difference between a bot and a localized masterpiece. Toggle the player and hear it for yourself.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow"
-              >
-                Localize My Channel →
+              <a href="#contact" className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow">
+                Get My Free 60s Demo →
               </a>
-              <a
-                href="#pricing"
-                className="inline-flex items-center justify-center rounded-lg border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground hover:bg-surface-elevated transition-colors"
-              >
-                See Pricing
+              <a href="#pricing" className="inline-flex items-center justify-center rounded-lg border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground hover:bg-surface-elevated transition-colors">
+                See the $75 Pack
               </a>
             </div>
 
@@ -66,8 +98,8 @@ export function Hero() {
               </div>
               <div className="w-px h-12 bg-border" />
               <div>
-                <div className="text-3xl font-bold gradient-text">+45%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">View Increase</div>
+                <div className="text-3xl font-bold gradient-text">+30%</div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wider">Watch Time</div>
               </div>
               <div className="w-px h-12 bg-border" />
               <div>
@@ -77,83 +109,92 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Player */}
+          {/* Right: Truth Player */}
           <div className="relative" style={{ animation: "var(--animate-scale-in)" }}>
-            <div className="relative rounded-2xl overflow-hidden glow-border bg-surface">
-              {/* Video placeholder */}
+            <div className={`relative rounded-2xl overflow-hidden bg-surface ring-2 transition-all duration-500 ${m.ringClass}`}>
               <div className="aspect-video relative bg-gradient-to-br from-surface-elevated to-background flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 grid-pattern opacity-30" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent" />
 
-                {/* Play button */}
-                <button
-                  onClick={() => setPlaying(!playing)}
-                  className="relative z-10 w-20 h-20 rounded-full bg-primary flex items-center justify-center hover:scale-110 transition-transform shadow-glow"
-                  aria-label="Play demo"
-                >
-                  {playing ? (
-                    <svg className="w-7 h-7 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                      <rect x="6" y="5" width="4" height="14" rx="1" />
-                      <rect x="14" y="5" width="4" height="14" rx="1" />
-                    </svg>
-                  ) : (
-                    <svg className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  )}
-                </button>
-
-                {/* Subtitle */}
-                <div className="absolute bottom-16 left-0 right-0 text-center px-6">
-                  <div className="inline-block bg-background/80 backdrop-blur-sm rounded-md px-4 py-2 text-sm font-medium">
-                    {lang === "EN"
-                      ? "\"Watch this insane redstone trap I built!\""
-                      : "\"Зацени, какую жёсткую ловушку на редстоуне я заделал!\""}
-                  </div>
+                {/* Mode badge */}
+                <div className={`absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${m.badgeClass}`}>
+                  {mode === "vox" && <Check className="w-3 h-3" />}
+                  {mode === "auto" && <X className="w-3 h-3" />}
+                  {mode === "original" && <Mic className="w-3 h-3" />}
+                  {m.badge}
                 </div>
 
-                {/* Lang toggle */}
-                <div className="absolute top-4 right-4 flex items-center gap-1 bg-background/80 backdrop-blur-sm rounded-full p-1 border border-border">
-                  {(["EN", "RU"] as const).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => setLang(l)}
-                      className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
-                        lang === l
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      {l}
-                    </button>
+                {/* Animated waveform */}
+                <div className="flex items-end gap-1 h-24 px-8">
+                  {Array.from({ length: 32 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className="w-1.5 rounded-full transition-all duration-500"
+                      style={{
+                        backgroundColor: m.waveColor,
+                        height: `${20 + Math.abs(Math.sin((i + (mode === "auto" ? 0 : mode === "vox" ? 2 : 1)) * 0.6)) * 80}%`,
+                        opacity: mode === "auto" ? 0.5 : 0.9,
+                        animation: `glow-pulse ${1.2 + (i % 5) * 0.2}s ease-in-out infinite`,
+                        animationDelay: `${i * 40}ms`,
+                      }}
+                    />
                   ))}
                 </div>
 
-                {/* Bottom bar */}
+                {/* Caption */}
+                <div className="absolute bottom-12 left-0 right-0 px-6 text-center">
+                  <div key={mode} className="inline-block bg-background/85 backdrop-blur-sm rounded-md px-4 py-2 text-sm font-medium max-w-md" style={{ animation: "var(--animate-fade-in)" }}>
+                    {m.caption}
+                  </div>
+                </div>
+
+                {/* Progress bar */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-border">
-                  <div className="h-full bg-primary w-1/3" />
+                  <div className="h-full transition-all duration-500" style={{ width: "42%", backgroundColor: m.waveColor }} />
                 </div>
               </div>
 
-              {/* Caption */}
-              <div className="px-5 py-4 border-t border-border flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold">Voice Cloning Demo</div>
-                    <div className="text-xs text-muted-foreground">Switch language to compare</div>
-                  </div>
-                </div>
-                <div className="text-xs font-mono text-primary">99.2% MATCH</div>
+              {/* Quality strip */}
+              <div className="px-5 py-3 border-t border-border flex items-center justify-between text-xs">
+                <span className="font-mono text-muted-foreground">02:14 / 05:21</span>
+                <span className={`font-semibold ${m.qualityClass}`}>{m.quality}</span>
+              </div>
+
+              {/* Toggle row */}
+              <div className="grid grid-cols-3 gap-2 p-3 border-t border-border bg-background/40">
+                {(Object.keys(MODES) as Mode[]).map((k) => {
+                  const active = mode === k;
+                  const isVox = k === "vox";
+                  const isAuto = k === "auto";
+                  return (
+                    <button
+                      key={k}
+                      onClick={() => setMode(k)}
+                      className={`group relative flex flex-col items-center gap-1 px-3 py-3 rounded-lg text-xs font-semibold transition-all ${
+                        active
+                          ? isVox
+                            ? "bg-primary text-primary-foreground shadow-glow"
+                            : isAuto
+                            ? "bg-destructive/20 text-destructive border border-destructive/50"
+                            : "bg-surface-elevated text-foreground border border-border"
+                          : "text-muted-foreground hover:text-foreground hover:bg-surface-elevated"
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        {isVox && <Check className="w-3.5 h-3.5" />}
+                        {isAuto && <X className="w-3.5 h-3.5" />}
+                        {k === "original" && <Mic className="w-3.5 h-3.5" />}
+                        {MODES[k].label}
+                      </span>
+                      <span className="text-[9px] uppercase tracking-wider opacity-80">
+                        {MODES[k].badge}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Decorative glow */}
             <div className="absolute -inset-4 -z-10 bg-primary/20 blur-3xl rounded-full opacity-50" />
           </div>
         </div>
