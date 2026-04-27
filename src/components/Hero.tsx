@@ -24,6 +24,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-surface-elevated text-muted-foreground border-border",
     quality: "Native Creator Voice",
     qualityClass: "text-muted-foreground",
+    vibe: "Authentic / Original",
   },
   auto: {
     label: "YouTube Auto-Dub",
@@ -34,6 +35,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-destructive/15 text-destructive border-destructive/40",
     quality: "Robotic · Flat · Wrong slang",
     qualityClass: "text-destructive",
+    vibe: "Robotic / Distracting",
   },
   vox: {
     label: "VoxLocalize Dub",
@@ -44,6 +46,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-primary/15 text-primary border-primary/40",
     quality: "Cloned voice · Native slang · 99.2% match",
     qualityClass: "text-primary",
+    vibe: "Premium / Engaging",
   },
 };
 
