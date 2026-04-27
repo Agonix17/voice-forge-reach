@@ -14,7 +14,7 @@ const GIANTS: Giant[] = [
     handle: "@MrBeastGaming",
     initials: "MB",
     videos: [
-      { title: "$1,000,000 Minecraft Battle Royale", views: "82M" },
+      { title: "$1,000,000 Minecraft Battle Royale", views: "82M", thumbnail: mrBeastPreview1 },
       { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
       { title: "I Survived 100 Days in Hardcore", views: "44M" },
     ],
