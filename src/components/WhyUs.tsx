@@ -41,7 +41,7 @@ export function WhyUs() {
               Generic translation services give you a textbook. We give you a fluent Russian streamer who happens to sound exactly like you. From "griefing" to "redstone mechanics" — we speak the player's language.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <div className="text-3xl font-bold gradient-text">7 yrs</div>
                 <div className="text-sm text-muted-foreground mt-1">In Minecraft creator economy</div>

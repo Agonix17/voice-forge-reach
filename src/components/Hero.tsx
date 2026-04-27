@@ -13,6 +13,7 @@ const MODES: Record<Mode, {
   badgeClass: string;
   quality: string;
   qualityClass: string;
+  vibe: string;
 }> = {
   original: {
     label: "Original EN",
@@ -23,6 +24,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-surface-elevated text-muted-foreground border-border",
     quality: "Native Creator Voice",
     qualityClass: "text-muted-foreground",
+    vibe: "Authentic / Original",
   },
   auto: {
     label: "YouTube Auto-Dub",
@@ -33,6 +35,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-destructive/15 text-destructive border-destructive/40",
     quality: "Robotic · Flat · Wrong slang",
     qualityClass: "text-destructive",
+    vibe: "Robotic / Distracting",
   },
   vox: {
     label: "VoxLocalize Dub",
@@ -43,6 +46,7 @@ const MODES: Record<Mode, {
     badgeClass: "bg-primary/15 text-primary border-primary/40",
     quality: "Cloned voice · Native slang · 99.2% match",
     qualityClass: "text-primary",
+    vibe: "Premium / Engaging",
   },
 };
 
@@ -70,7 +74,7 @@ export function Hero() {
               Premium AI Dub for Minecraft Creators
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
               One Video.
               <br />
               <span className="gradient-text">40 Million</span> New Viewers.
@@ -82,11 +86,11 @@ export function Hero() {
               Experience the difference between a bot and a localized masterpiece. Toggle the player and hear it for yourself.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <a href="#contact" className="inline-flex items-center justify-center rounded-lg bg-primary px-6 sm:px-8 py-4 min-h-[48px] text-base font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow">
                 Get My Free 60s Demo →
               </a>
-              <a href="#pricing" className="inline-flex items-center justify-center rounded-lg border border-border bg-surface px-8 py-4 text-base font-semibold text-foreground hover:bg-surface-elevated transition-colors">
+              <a href="#pricing" className="inline-flex items-center justify-center rounded-lg border border-border bg-surface px-6 sm:px-8 py-4 min-h-[48px] text-base font-semibold text-foreground hover:bg-surface-elevated transition-colors">
                 See the $75 Pack
               </a>
             </div>
@@ -125,11 +129,11 @@ export function Hero() {
                 </div>
 
                 {/* Animated waveform */}
-                <div className="flex items-end gap-1 h-24 px-8">
+                <div className="flex items-end gap-1 h-16 sm:h-24 px-4 sm:px-8">
                   {Array.from({ length: 32 }).map((_, i) => (
                     <span
                       key={i}
-                      className="w-1.5 rounded-full transition-all duration-500"
+                      className="w-1 sm:w-1.5 rounded-full transition-all duration-500"
                       style={{
                         backgroundColor: m.waveColor,
                         height: `${20 + Math.abs(Math.sin((i + (mode === "auto" ? 0 : mode === "vox" ? 2 : 1)) * 0.6)) * 80}%`,
@@ -141,9 +145,16 @@ export function Hero() {
                   ))}
                 </div>
 
+                {/* Vibe label */}
+                <div className="absolute top-4 right-4 hidden sm:block">
+                  <span key={`v-${mode}`} className={`text-[10px] font-bold uppercase tracking-wider ${m.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>
+                    {m.vibe}
+                  </span>
+                </div>
+
                 {/* Caption */}
-                <div className="absolute bottom-12 left-0 right-0 px-6 text-center">
-                  <div key={mode} className="inline-block bg-background/85 backdrop-blur-sm rounded-md px-4 py-2 text-sm font-medium max-w-md" style={{ animation: "var(--animate-fade-in)" }}>
+                <div className="absolute bottom-10 sm:bottom-12 left-0 right-0 px-3 sm:px-6 text-center">
+                  <div key={mode} className="inline-block bg-background/85 backdrop-blur-sm rounded-md px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium max-w-md" style={{ animation: "var(--animate-fade-in)" }}>
                     {m.caption}
                   </div>
                 </div>
@@ -155,9 +166,9 @@ export function Hero() {
               </div>
 
               {/* Quality strip */}
-              <div className="px-5 py-3 border-t border-border flex items-center justify-between text-xs">
-                <span className="font-mono text-muted-foreground">02:14 / 05:21</span>
-                <span className={`font-semibold ${m.qualityClass}`}>{m.quality}</span>
+              <div className="px-4 sm:px-5 py-3 border-t border-border flex items-center justify-between gap-2 text-[11px] sm:text-xs">
+                <span className="font-mono text-muted-foreground flex-shrink-0">02:14 / 05:21</span>
+                <span key={`q-${mode}`} className={`font-semibold text-right ${m.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>{m.quality}</span>
               </div>
 
               {/* Toggle row */}
@@ -170,7 +181,8 @@ export function Hero() {
                     <button
                       key={k}
                       onClick={() => setMode(k)}
-                      className={`group relative flex flex-col items-center gap-1 px-3 py-3 rounded-lg text-xs font-semibold transition-all ${
+                      aria-pressed={active}
+                      className={`group relative flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-3 min-h-[56px] rounded-lg text-[11px] sm:text-xs font-semibold transition-all ${
                         active
                           ? isVox
                             ? "bg-primary text-primary-foreground shadow-glow"
@@ -180,11 +192,12 @@ export function Hero() {
                           : "text-muted-foreground hover:text-foreground hover:bg-surface-elevated"
                       }`}
                     >
-                      <span className="flex items-center gap-1.5">
-                        {isVox && <Check className="w-3.5 h-3.5" />}
-                        {isAuto && <X className="w-3.5 h-3.5" />}
-                        {k === "original" && <Mic className="w-3.5 h-3.5" />}
-                        {MODES[k].label}
+                      <span className="flex items-center gap-1 sm:gap-1.5 text-center leading-tight">
+                        {isVox && <Check className="w-3.5 h-3.5 flex-shrink-0" />}
+                        {isAuto && <X className="w-3.5 h-3.5 flex-shrink-0" />}
+                        {k === "original" && <Mic className="w-3.5 h-3.5 flex-shrink-0" />}
+                        <span className="hidden sm:inline">{MODES[k].label}</span>
+                        <span className="sm:hidden">{k === "original" ? "Original" : k === "auto" ? "Auto" : "Vox"}</span>
                       </span>
                       <span className="text-[9px] uppercase tracking-wider opacity-80">
                         {MODES[k].badge}
