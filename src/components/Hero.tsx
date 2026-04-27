@@ -13,6 +13,7 @@ const MODES: Record<Mode, {
   badgeClass: string;
   quality: string;
   qualityClass: string;
+  vibe: string;
 }> = {
   original: {
     label: "Original EN",
