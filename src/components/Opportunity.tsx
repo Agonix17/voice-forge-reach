@@ -77,7 +77,7 @@ export function Opportunity() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {GIANTS.map((g, i) => (
             <article
               key={g.name}
@@ -146,7 +146,7 @@ export function Opportunity() {
             </p>
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow"
+              className="inline-flex items-center justify-center min-h-[44px] rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-all hover:scale-105 shadow-glow"
             >
               Claim Your Pack →
             </a>
