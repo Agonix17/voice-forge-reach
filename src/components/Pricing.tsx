@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Check, Gift, Plus, Sparkles } from "lucide-react";
+import { Check, Gift, Plus, Sparkles, Flame } from "lucide-react";
 
 const FEATURES = [
   { label: "Pro AI Voice Cloning (99.2% match)", gift: false },
@@ -65,6 +65,23 @@ export function Pricing() {
 
             <div className="my-6 h-px bg-border" />
 
+            {/* Limited time bonus banner */}
+            <div className="mb-6 rounded-xl border border-primary/40 bg-gradient-to-r from-primary/15 to-primary/5 p-4 relative overflow-hidden">
+              <div className="absolute -top-1 -right-1 inline-flex items-center gap-1 bg-destructive text-destructive-foreground text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-bl-lg">
+                <Flame className="w-3 h-3" />
+                Limited Time
+              </div>
+              <div className="flex items-start gap-3 pr-20">
+                <Gift className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-foreground">2 FREE Bonuses included this month</div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Localized Thumbnail (worth $35) + SEO Meta-Data (worth $20) — yours free with every $75 pack.
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <ul className="space-y-3 mb-8">
               {FEATURES.map((f) => (
                 <li key={f.label} className="flex items-start gap-3 text-sm">
@@ -76,8 +93,8 @@ export function Pricing() {
                   <span className="text-foreground/90">
                     {f.label}
                     {f.gift && (
-                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-1.5 py-0.5 rounded">
-                        Free Gift
+                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-destructive bg-destructive/15 border border-destructive/40 px-1.5 py-0.5 rounded">
+                        Free Bonus
                       </span>
                     )}
                   </span>
@@ -87,7 +104,7 @@ export function Pricing() {
 
             <a
               href="#contact"
-              className="block text-center rounded-lg bg-primary text-primary-foreground px-5 py-4 text-base font-bold hover:bg-primary-glow transition-all hover:scale-[1.02] shadow-glow"
+              className="block text-center rounded-lg bg-primary text-primary-foreground px-5 py-4 min-h-[52px] text-base font-bold hover:bg-primary-glow transition-all hover:scale-[1.02] shadow-glow"
             >
               Get the $75 Pack →
             </a>
@@ -114,7 +131,7 @@ export function Pricing() {
                   <li key={u.id}>
                     <button
                       onClick={() => setSelected((s) => ({ ...s, [u.id]: !s[u.id] }))}
-                      className={`w-full flex items-center justify-between gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-all ${
+                      className={`w-full flex items-center justify-between gap-3 rounded-lg border px-4 py-3 min-h-[52px] text-left text-sm transition-all ${
                         on
                           ? "border-primary bg-primary/10 text-foreground"
                           : "border-border bg-surface-elevated text-foreground/90 hover:border-primary/40"
@@ -146,7 +163,7 @@ export function Pricing() {
               </div>
               <a
                 href="#contact"
-                className="block text-center rounded-lg border border-primary/40 bg-primary/10 text-primary px-5 py-3 text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all"
+                className="block text-center rounded-lg border border-primary/40 bg-primary/10 text-primary px-5 py-3 min-h-[44px] text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all"
               >
                 Lock in this build →
               </a>
