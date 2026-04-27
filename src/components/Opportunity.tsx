@@ -106,7 +106,16 @@ export function Opportunity() {
                     key={idx}
                     className="aspect-video rounded-md bg-gradient-to-br from-surface-elevated to-background relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
                   >
-                    <div className="absolute inset-0 grid-pattern opacity-40" />
+                    {v.thumbnail ? (
+                      <img
+                        src={v.thumbnail}
+                        alt={v.title}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid-pattern opacity-40" />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-primary bg-background/80 px-1 py-0.5 rounded">
                       {v.views}
