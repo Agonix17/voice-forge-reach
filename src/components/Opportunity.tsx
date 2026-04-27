@@ -1,10 +1,11 @@
 import { TrendingUp } from "lucide-react";
+import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
 
 type Giant = {
   name: string;
   handle: string;
   initials: string;
-  videos: { title: string; views: string }[];
+  videos: { title: string; views: string; thumbnail?: string }[];
 };
 
 const GIANTS: Giant[] = [
