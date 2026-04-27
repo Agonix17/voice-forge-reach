@@ -1,10 +1,11 @@
 import { TrendingUp } from "lucide-react";
+import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
 
 type Giant = {
   name: string;
   handle: string;
   initials: string;
-  videos: { title: string; views: string }[];
+  videos: { title: string; views: string; thumbnail?: string }[];
 };
 
 const GIANTS: Giant[] = [
@@ -13,7 +14,7 @@ const GIANTS: Giant[] = [
     handle: "@MrBeastGaming",
     initials: "MB",
     videos: [
-      { title: "$1,000,000 Minecraft Battle Royale", views: "82M" },
+      { title: "$1,000,000 Minecraft Battle Royale", views: "82M", thumbnail: mrBeastPreview1 },
       { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
       { title: "I Survived 100 Days in Hardcore", views: "44M" },
     ],
@@ -105,7 +106,16 @@ export function Opportunity() {
                     key={idx}
                     className="aspect-video rounded-md bg-gradient-to-br from-surface-elevated to-background relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
                   >
-                    <div className="absolute inset-0 grid-pattern opacity-40" />
+                    {v.thumbnail ? (
+                      <img
+                        src={v.thumbnail}
+                        alt={v.title}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 grid-pattern opacity-40" />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-primary bg-background/80 px-1 py-0.5 rounded">
                       {v.views}
