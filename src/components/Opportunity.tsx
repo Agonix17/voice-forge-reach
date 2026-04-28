@@ -15,6 +15,7 @@ const GIANTS: Giant[] = [
     name: "MrBeast Gaming",
     handle: "@MrBeastGaming",
     initials: "MB",
+    logo: mrBeastLogo,
     videos: [
       { title: "$1,000,000 Minecraft Battle Royale", views: "82M", thumbnail: mrBeastPreview1 },
       { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
