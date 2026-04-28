@@ -89,8 +89,12 @@ export function Opportunity() {
             >
               <header className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-primary-foreground font-bold text-sm">
-                    {g.initials}
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-primary-foreground font-bold text-sm overflow-hidden">
+                    {g.logo ? (
+                      <img src={g.logo} alt={`${g.name} logo`} className="w-full h-full object-cover" />
+                    ) : (
+                      g.initials
+                    )}
                   </div>
                   <div>
                     <h3 className="font-bold text-base leading-tight">{g.name}</h3>
