@@ -115,7 +115,7 @@ export function Pricing() {
 
           {/* Upsells */}
           <div
-            className="lg:col-span-2 rounded-2xl border border-border bg-surface p-8 flex flex-col"
+            className="lg:col-span-2 rounded-2xl border border-border bg-surface p-5 sm:p-8 flex flex-col"
             style={{ animation: "var(--animate-fade-up)", animationDelay: "120ms", animationFillMode: "backwards" }}
           >
             <div className="flex items-center gap-2 mb-1">
