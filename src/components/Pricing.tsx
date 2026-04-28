@@ -44,7 +44,7 @@ export function Pricing() {
         <div className="grid lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           {/* Main pack */}
           <div
-            className="lg:col-span-3 relative rounded-2xl p-8 md:p-10 bg-surface-elevated border-2 border-primary shadow-glow"
+            className="lg:col-span-3 relative rounded-2xl p-5 sm:p-8 md:p-10 bg-surface-elevated border-2 border-primary shadow-glow"
             style={{ animation: "var(--animate-fade-up)" }}
           >
             <div className="absolute -top-3 left-8 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full inline-flex items-center gap-1.5">
@@ -66,12 +66,12 @@ export function Pricing() {
             <div className="my-6 h-px bg-border" />
 
             {/* Limited time bonus banner */}
-            <div className="mb-6 rounded-xl border border-primary/40 bg-gradient-to-r from-primary/15 to-primary/5 p-4 relative overflow-hidden">
-              <div className="absolute -top-1 -right-1 inline-flex items-center gap-1 bg-destructive text-destructive-foreground text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-bl-lg">
+            <div className="mb-6 rounded-xl border border-primary/40 bg-gradient-to-r from-primary/15 to-primary/5 p-4 pt-9 sm:pt-4 relative overflow-hidden">
+              <div className="absolute top-0 right-0 inline-flex items-center gap-1 bg-destructive text-destructive-foreground text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-bl-lg">
                 <Flame className="w-3 h-3" />
                 Limited Time
               </div>
-              <div className="flex items-start gap-3 pr-20">
+              <div className="flex items-start gap-3 sm:pr-24">
                 <Gift className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-foreground">2 FREE Bonuses included this month</div>
@@ -115,7 +115,7 @@ export function Pricing() {
 
           {/* Upsells */}
           <div
-            className="lg:col-span-2 rounded-2xl border border-border bg-surface p-8 flex flex-col"
+            className="lg:col-span-2 rounded-2xl border border-border bg-surface p-5 sm:p-8 flex flex-col"
             style={{ animation: "var(--animate-fade-up)", animationDelay: "120ms", animationFillMode: "backwards" }}
           >
             <div className="flex items-center gap-2 mb-1">
