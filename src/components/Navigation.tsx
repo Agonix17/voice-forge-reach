@@ -15,17 +15,17 @@ export function Navigation() {
         scrolled ? "py-3" : "py-5"
       }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <nav
-          className={`glass rounded-2xl flex items-center justify-between px-6 py-3 transition-all ${
+          className={`glass rounded-2xl flex items-center justify-between gap-3 px-3 sm:px-6 py-2.5 sm:py-3 transition-all ${
             scrolled ? "shadow-card" : ""
           }`}
         >
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center font-bold text-primary-foreground">
+          <a href="#" className="flex items-center gap-2 group min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center font-bold text-primary-foreground flex-shrink-0">
               V
             </div>
-            <span className="font-bold text-lg tracking-tight">VoxLocalize</span>
+            <span className="font-bold text-base sm:text-lg tracking-tight truncate">VoxLocalize</span>
           </a>
 
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
@@ -37,9 +37,10 @@ export function Navigation() {
 
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors shadow-glow whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-3 sm:px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors shadow-glow whitespace-nowrap flex-shrink-0"
           >
-            Get My Free 60s Demo
+            <span className="hidden sm:inline">Get My Free 60s Demo</span>
+            <span className="sm:hidden">Free Demo</span>
           </a>
         </nav>
       </div>
