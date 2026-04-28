@@ -95,20 +95,20 @@ export function Hero() {
               </a>
             </div>
 
-            <div className="flex items-center gap-8 pt-4">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-4 sm:gap-8 pt-4">
               <div>
-                <div className="text-3xl font-bold gradient-text">40M+</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">RU Speakers</div>
+                <div className="text-2xl sm:text-3xl font-bold gradient-text">40M+</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">RU Speakers</div>
               </div>
-              <div className="w-px h-12 bg-border" />
+              <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-3xl font-bold gradient-text">+30%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Watch Time</div>
+                <div className="text-2xl sm:text-3xl font-bold gradient-text">+30%</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">Watch Time</div>
               </div>
-              <div className="w-px h-12 bg-border" />
+              <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-3xl font-bold gradient-text">72h</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Turnaround</div>
+                <div className="text-2xl sm:text-3xl font-bold gradient-text">72h</div>
+                <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">Turnaround</div>
               </div>
             </div>
           </div>
