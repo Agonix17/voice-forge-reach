@@ -1,10 +1,12 @@
 import { TrendingUp } from "lucide-react";
 import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
+import mrBeastLogo from "@/assets/logo-mrbeast.jpeg";
 
 type Giant = {
   name: string;
   handle: string;
   initials: string;
+  logo?: string;
   videos: { title: string; views: string; thumbnail?: string }[];
 };
 
@@ -13,6 +15,7 @@ const GIANTS: Giant[] = [
     name: "MrBeast Gaming",
     handle: "@MrBeastGaming",
     initials: "MB",
+    logo: mrBeastLogo,
     videos: [
       { title: "$1,000,000 Minecraft Battle Royale", views: "82M", thumbnail: mrBeastPreview1 },
       { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
@@ -86,8 +89,12 @@ export function Opportunity() {
             >
               <header className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-primary-foreground font-bold text-sm">
-                    {g.initials}
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-primary-foreground font-bold text-sm overflow-hidden">
+                    {g.logo ? (
+                      <img src={g.logo} alt={`${g.name} logo`} className="w-full h-full object-cover" />
+                    ) : (
+                      g.initials
+                    )}
                   </div>
                   <div>
                     <h3 className="font-bold text-base leading-tight">{g.name}</h3>
