@@ -44,7 +44,7 @@ export function Pricing() {
         <div className="grid lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           {/* Main pack */}
           <div
-            className="lg:col-span-3 relative rounded-2xl p-8 md:p-10 bg-surface-elevated border-2 border-primary shadow-glow"
+            className="lg:col-span-3 relative rounded-2xl p-5 sm:p-8 md:p-10 bg-surface-elevated border-2 border-primary shadow-glow"
             style={{ animation: "var(--animate-fade-up)" }}
           >
             <div className="absolute -top-3 left-8 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full inline-flex items-center gap-1.5">
