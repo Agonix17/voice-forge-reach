@@ -74,10 +74,10 @@ export function Hero() {
               Premium AI Dub for Minecraft Creators
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+            <h1 className="text-[2.25rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
               One Video.
               <br />
-              <span className="gradient-text">40 Million</span> New Viewers.
+              <span className="gradient-text">40M</span> <span className="sm:hidden">New Viewers.</span><span className="hidden sm:inline">New Viewers.</span>
               <br />
               <span className="text-foreground">$75.</span>
             </h1>
