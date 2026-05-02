@@ -26,6 +26,7 @@ const GIANTS: Giant[] = [
     name: "Dream",
     handle: "@Dream",
     initials: "DR",
+    logo: mrBeastLogo,
     videos: [
       { title: "Minecraft Manhunt vs 4 Hunters", views: "120M" },
       { title: "Speedrunner vs Hunters Finale", views: "89M" },
