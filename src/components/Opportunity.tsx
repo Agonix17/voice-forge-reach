@@ -1,10 +1,10 @@
 import { TrendingUp } from "lucide-react";
 import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
 import mrBeastLogo from "@/assets/logo-mrbeast.jpeg";
-import dreamLogo from "@/assets/dream.jpeg";
-import karlLogo from "@/assets/Karl.jpeg";
-import athosLogo from "@/assets/Athos.jpeg";
-import maizenLogo from "@/assets/Maizen.jpeg";
+import dreamLogo from "@/assets/dream.jpg";
+import karlLogo from "@/assets/Karl.jpg";
+import athosLogo from "@/assets/Athos.jpg";
+import maizenLogo from "@/assets/Maizen.jpg";
 
 type Giant = {
   name: string;
