@@ -1,6 +1,10 @@
 import { TrendingUp } from "lucide-react";
 import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
 import mrBeastLogo from "@/assets/logo-mrbeast.jpeg";
+import dreamLogo from "@/assets/dream.jpeg";
+import KarlLogo from "@/assets/Karl.jpeg";
+import AthosLogo from "@/assets/Athos.jpeg";
+import MaizenLogo from "@/assets/Maizen.jpeg";
 
 type Giant = {
   name: string;
@@ -26,7 +30,7 @@ const GIANTS: Giant[] = [
     name: "Dream",
     handle: "@Dream",
     initials: "DR",
-    logo: mrBeastLogo,
+    logo: dreamLogo,
     videos: [
       { title: "Minecraft Manhunt vs 4 Hunters", views: "120M" },
       { title: "Speedrunner vs Hunters Finale", views: "89M" },
@@ -35,8 +39,9 @@ const GIANTS: Giant[] = [
   },
   {
     name: "Karl Jacobs",
-    handle: "@KarlJacobs",
+    handle: "@Karl",
     initials: "KJ",
+    logo: KarlLogo,
     videos: [
       { title: "I Hosted a Minecraft Tournament", views: "12M" },
       { title: "Tales of the SMP Compilation", views: "9.4M" },
@@ -45,8 +50,9 @@ const GIANTS: Giant[] = [
   },
   {
     name: "Athos",
-    handle: "@Athos",
+    handle: "@Athosgamer",
     initials: "AT",
+    logo: AthosLogo,
     videos: [
       { title: "Building the Largest Mob Farm", views: "18M" },
       { title: "Redstone Engineering Marvels", views: "14M" },
@@ -55,8 +61,9 @@ const GIANTS: Giant[] = [
   },
   {
     name: "Maizen",
-    handle: "@Maizen",
+    handle: "@maizenofficial",
     initials: "MZ",
+    logo: MaizenLogo,
     videos: [
       { title: "JJ and Mikey Survival Stories", views: "240M" },
       { title: "Mikey vs JJ Build Battle", views: "180M" },
