@@ -119,7 +119,7 @@ export function Opportunity() {
                 {g.videos.map((v, idx) => (
                   <div
                     key={idx}
-                    className="aspect-video rounded-md bg-gradient-to-br from-surface-elevated to-background relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
+                    className="h-20 rounded-md bg-gradient-to-br from-surface-elevated to-background relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
                   >
                     {v.thumbnail ? (
                       <img
