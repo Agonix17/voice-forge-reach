@@ -1,6 +1,29 @@
 import { useEffect, useState } from "react";
+import { useT, type Lang } from "@/lib/i18n";
+
+function LanguageSwitcher() {
+  const { lang, setLang } = useT();
+  const opts: Lang[] = ["en", "ru"];
+  return (
+    <div className="inline-flex items-center rounded-md border border-border bg-surface p-0.5 text-[11px] font-semibold">
+      {opts.map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`px-2 py-1 rounded-[5px] uppercase tracking-wider transition-colors ${
+            lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Navigation() {
+  const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -16,32 +39,31 @@ export function Navigation() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
-        <nav
-          className={`glass rounded-2xl flex items-center justify-between gap-3 px-3 sm:px-6 py-2.5 sm:py-3 transition-all ${
-            scrolled ? "shadow-card" : ""
-          }`}
-        >
+        <nav className="glass rounded-xl flex items-center justify-between gap-3 px-3 sm:px-5 py-2.5 sm:py-3">
           <a href="#" className="flex items-center gap-2 group min-w-0">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center font-bold text-primary-foreground flex-shrink-0">
+            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center font-bold text-primary-foreground flex-shrink-0">
               V
             </div>
-            <span className="font-bold text-base sm:text-lg tracking-tight truncate">VoxLocalize</span>
+            <span className="font-semibold text-base sm:text-lg tracking-tight truncate">VoxLocalize</span>
           </a>
 
-          <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#opportunity" className="hover:text-foreground transition-colors">Giants</a>
-            <a href="#services" className="hover:text-foreground transition-colors">Services</a>
-            <a href="#pricing" className="hover:text-foreground transition-colors">$75 Pack</a>
-            <a href="#why" className="hover:text-foreground transition-colors">Why Us</a>
+          <div className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
+            <a href="#opportunity" className="hover:text-foreground transition-colors">{t("nav.giants")}</a>
+            <a href="#services" className="hover:text-foreground transition-colors">{t("nav.services")}</a>
+            <a href="#pricing" className="hover:text-foreground transition-colors">{t("nav.pricing")}</a>
+            <a href="#why" className="hover:text-foreground transition-colors">{t("nav.why")}</a>
           </div>
 
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-3 sm:px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold text-primary-foreground hover:bg-primary-glow transition-colors shadow-glow whitespace-nowrap flex-shrink-0"
-          >
-            <span className="hidden sm:inline">Get My Free 60s Demo</span>
-            <span className="sm:hidden">Free Demo</span>
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <LanguageSwitcher />
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-3 sm:px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              <span className="hidden sm:inline">{t("nav.cta")}</span>
+              <span className="sm:hidden">{t("nav.ctaShort")}</span>
+            </a>
+          </div>
         </nav>
       </div>
     </header>
