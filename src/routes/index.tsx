@@ -23,22 +23,27 @@ export const Route = createFileRoute("/")({
   }),
 });
 
+import { LanguageProvider } from "@/lib/i18n";
+
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      <main>
-        <Hero />
-        <TrustBar />
-        <Opportunity />
-        <Process />
-        <Services />
-        <Pricing />
-        <WhyUs />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
+        <main>
+          <Hero />
+          <TrustBar />
+          <Opportunity />
+          <Process />
+          <Services />
+          <Pricing />
+          <WhyUs />
+          <FAQ />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }
+
