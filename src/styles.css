@@ -99,13 +99,15 @@
   --muted: oklch(0.20 0.008 260);
   --muted-foreground: oklch(0.65 0.015 260);
 
-  --accent: oklch(0.72 0.20 150);
+  --accent: oklch(0.72 0.22 200);
   --accent-foreground: oklch(0.10 0.005 260);
+  --accent-2: oklch(0.68 0.25 295);
+  --accent-3: oklch(0.78 0.20 200);
 
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.25 0.010 260);
+  --border: oklch(0.28 0.020 260);
   --input: oklch(0.20 0.008 260);
   --ring: oklch(0.72 0.20 150);
 
@@ -142,6 +144,12 @@
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% 0%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 10%, color-mix(in oklab, var(--accent-2) 22%, transparent), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 50% 100%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 65%),
+      radial-gradient(ellipse 50% 40% at 80% 60%, color-mix(in oklab, var(--accent-2) 14%, transparent), transparent 70%);
+    background-attachment: fixed;
   }
 
   ::selection {
@@ -161,11 +169,21 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-glow) 60%, color-mix(in oklab, var(--primary-glow) 70%, white 30%) 100%);
+    background: linear-gradient(120deg, var(--primary) 0%, var(--accent-3) 45%, var(--accent-2) 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  .gradient-border {
+    position: relative;
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      linear-gradient(135deg, var(--primary), var(--accent-2)) border-box;
+    border: 1px solid transparent;
   }
 
   .grid-pattern {
