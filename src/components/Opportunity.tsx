@@ -64,11 +64,11 @@ export function Opportunity() {
           <p className="mt-6 text-lg text-muted-foreground">{t("opp.subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto auto-rows-fr">
           {GIANTS.map((g, i) => (
             <article
               key={g.name}
-              className="group relative rounded-2xl border border-border bg-surface/80 backdrop-blur-sm p-5 shadow-xl shadow-black/30 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 ease-out overflow-hidden"
+              className="group relative rounded-2xl border border-border bg-surface/80 backdrop-blur-sm p-5 shadow-xl shadow-black/30 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 ease-out overflow-hidden h-full"
               style={{ animation: "var(--animate-fade-up)", animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
               <div className="pointer-events-none absolute -top-24 -right-24 w-56 h-56 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500" style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--primary) 40%, transparent), transparent 70%)" }} />
@@ -119,7 +119,7 @@ export function Opportunity() {
           ))}
 
           <article
-            className="group relative rounded-2xl gradient-border p-5 flex flex-col items-center justify-center text-center min-h-[280px] shadow-2xl shadow-primary/20 hover:-translate-y-1 hover:shadow-primary/40 transition-all duration-300 ease-out overflow-hidden"
+            className="group relative rounded-2xl gradient-border p-5 flex flex-col items-center justify-center text-center min-h-[280px] shadow-2xl shadow-primary/20 hover:-translate-y-1 hover:shadow-primary/40 transition-all duration-300 ease-out overflow-hidden h-full"
             style={{ animation: "var(--animate-fade-up)", animationDelay: `${GIANTS.length * 80}ms`, animationFillMode: "backwards" }}
           >
             <div className="pointer-events-none absolute inset-0 opacity-70" style={{ background: "radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primary) 25%, transparent), transparent 70%)" }} />
