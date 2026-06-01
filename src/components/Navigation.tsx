@@ -58,7 +58,7 @@ export function Navigation() {
             <LanguageSwitcher />
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-3 sm:px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-3 sm:px-4 py-2 min-h-[40px] text-xs sm:text-sm font-semibold text-primary-foreground hover:opacity-90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 ease-out whitespace-nowrap"
             >
               <span className="hidden sm:inline">{t("nav.cta")}</span>
               <span className="sm:hidden">{t("nav.ctaShort")}</span>
