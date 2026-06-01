@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Check, X, Mic } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import { useT } from "@/lib/i18n";
 
 type Mode = "original" | "auto" | "vox";
@@ -34,8 +33,8 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <img src={heroBg} alt="" width={1920} height={1080} className="w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/95 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
         <div className="absolute inset-0 grid-pattern opacity-40" />
       </div>
 
@@ -177,4 +176,4 @@ export function Hero() {
       </div>
     </section>
   );
-                        }
+                      }
