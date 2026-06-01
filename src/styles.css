@@ -36,9 +36,8 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--primary) 35%, transparent);
-  --shadow-card: 0 10px 30px -12px oklch(0 0 0 / 0.55), 0 2px 6px oklch(0 0 0 / 0.35);
-  --shadow-ambient: 0 30px 80px -30px color-mix(in oklab, var(--primary) 25%, transparent), 0 8px 24px -12px oklch(0 0 0 / 0.5);
+  --shadow-glow: none;
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.4);
 
   --animate-fade-in: fade-in 0.6s ease-out;
   --animate-fade-up: fade-up 0.7s ease-out;
@@ -99,15 +98,13 @@
   --muted: oklch(0.20 0.008 260);
   --muted-foreground: oklch(0.65 0.015 260);
 
-  --accent: oklch(0.72 0.22 200);
+  --accent: oklch(0.72 0.20 150);
   --accent-foreground: oklch(0.10 0.005 260);
-  --accent-2: oklch(0.68 0.25 295);
-  --accent-3: oklch(0.78 0.20 200);
 
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.28 0.020 260);
+  --border: oklch(0.25 0.010 260);
   --input: oklch(0.20 0.008 260);
   --ring: oklch(0.72 0.20 150);
 
@@ -144,12 +141,6 @@
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 15% 0%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 90% 10%, color-mix(in oklab, var(--accent-2) 22%, transparent), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 50% 100%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 65%),
-      radial-gradient(ellipse 50% 40% at 80% 60%, color-mix(in oklab, var(--accent-2) 14%, transparent), transparent 70%);
-    background-attachment: fixed;
   }
 
   ::selection {
@@ -160,30 +151,16 @@
 
 @layer utilities {
   .glass {
-    background-color: color-mix(in oklab, var(--background) 65%, transparent);
-    backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
-    box-shadow:
-      0 10px 40px -12px oklch(0 0 0 / 0.5),
-      inset 0 1px 0 color-mix(in oklab, var(--foreground) 6%, transparent);
+    background-color: color-mix(in oklab, var(--background) 80%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
   }
 
   .gradient-text {
-    background: linear-gradient(120deg, var(--primary) 0%, var(--accent-3) 45%, var(--accent-2) 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: shimmer 6s ease-in-out infinite;
-  }
-
-  .gradient-border {
-    position: relative;
-    background:
-      linear-gradient(var(--surface), var(--surface)) padding-box,
-      linear-gradient(135deg, var(--primary), var(--accent-2)) border-box;
-    border: 1px solid transparent;
+    color: var(--primary);
+    -webkit-text-fill-color: var(--primary);
+    background: none;
   }
 
   .grid-pattern {
@@ -193,8 +170,11 @@
     background-size: 48px 48px;
   }
 
-  .glow-border { box-shadow: var(--shadow-glow); }
-  .shadow-ambient { box-shadow: var(--shadow-ambient); }
+  .glow-border {
+    box-shadow: none;
+  }
 }
 
-
+/* Minimalist refinement — flatten decorative effects globally */
+[class*="blur-3xl"] { display: none !important; }
+.shadow-glow { box-shadow: none !important; }
