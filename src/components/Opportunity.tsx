@@ -1,10 +1,4 @@
 import { TrendingUp } from "lucide-react";
-import mrBeastPreview1 from "@/assets/preview-mrbeast-1.jpg";
-import mrBeastLogo from "@/assets/logo-mrbeast.jpeg";
-import dreamLogo from "@/assets/dream.jpg";
-import karlLogo from "@/assets/Karl.jpg";
-import athosLogo from "@/assets/Athos.jpg";
-import maizenLogo from "@/assets/Maizen.jpg";
 import { useT } from "@/lib/i18n";
 
 type Giant = {
@@ -20,29 +14,28 @@ const GIANTS: Giant[] = [
     name: "MrBeast Gaming",
     handle: "@MrBeastGaming",
     initials: "MB",
-    logo: mrBeastLogo,
     videos: [
-      { title: "$1,000,000 Minecraft Battle Royale", views: "82M", thumbnail: mrBeastPreview1 },
+      { title: "$1,000,000 Minecraft Battle Royale", views: "82M" },
       { title: "Last to Leave Minecraft Wins $20K", views: "61M" },
       { title: "I Survived 100 Days in Hardcore", views: "44M" },
     ],
   },
-  { name: "Dream", handle: "@Dream", initials: "DR", logo: dreamLogo, videos: [
+  { name: "Dream", handle: "@Dream", initials: "DR", videos: [
     { title: "Minecraft Manhunt vs 4 Hunters", views: "120M" },
     { title: "Speedrunner vs Hunters Finale", views: "89M" },
     { title: "Beating Minecraft Blindfolded", views: "37M" },
   ]},
-  { name: "Karl Jacobs", handle: "@Karl", initials: "KJ", logo: karlLogo, videos: [
+  { name: "Karl Jacobs", handle: "@Karl", initials: "KJ", videos: [
     { title: "I Hosted a Minecraft Tournament", views: "12M" },
     { title: "Tales of the SMP Compilation", views: "9.4M" },
     { title: "Last to Leave the Circle", views: "7.8M" },
   ]},
-  { name: "Athos", handle: "@Athosgamer", initials: "AT", logo: athosLogo, videos: [
+  { name: "Athos", handle: "@Athosgamer", initials: "AT", videos: [
     { title: "Building the Largest Mob Farm", views: "18M" },
     { title: "Redstone Engineering Marvels", views: "14M" },
     { title: "I Made a Working Computer in MC", views: "11M" },
   ]},
-  { name: "Maizen", handle: "@maizenofficial", initials: "MZ", logo: maizenLogo, videos: [
+  { name: "Maizen", handle: "@maizenofficial", initials: "MZ", videos: [
     { title: "JJ and Mikey Survival Stories", views: "240M" },
     { title: "Mikey vs JJ Build Battle", views: "180M" },
     { title: "Security House Challenge", views: "150M" },
@@ -73,12 +66,8 @@ export function Opportunity() {
             >
               <header className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-surface-elevated border border-border flex items-center justify-center text-foreground font-semibold text-sm overflow-hidden">
-                    {g.logo ? (
-                      <img src={g.logo} alt={`${g.name} logo`} className="w-full h-full object-cover" />
-                    ) : (
-                      g.initials
-                    )}
+                  <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground font-semibold text-sm flex items-center justify-center">
+                    {g.initials}
                   </div>
                   <div>
                     <h3 className="font-semibold text-base leading-tight">{g.name}</h3>
@@ -95,13 +84,9 @@ export function Opportunity() {
                 {g.videos.map((v, idx) => (
                   <div
                     key={idx}
-                    className="h-20 rounded-md bg-surface-elevated relative overflow-hidden border border-border"
+                    className="h-20 rounded-md bg-surface-elevated relative overflow-hidden border border-border flex items-center justify-center"
                   >
-                    {v.thumbnail ? (
-                      <img src={v.thumbnail} alt={v.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                    ) : (
-                      <div className="absolute inset-0 grid-pattern opacity-40" />
-                    )}
+                    <div className="absolute inset-0 grid-pattern opacity-40" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
                     <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-foreground bg-background/80 px-1 py-0.5 rounded">
                       {v.views}
