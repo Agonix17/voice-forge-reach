@@ -35,9 +35,9 @@ const audioRef = useRef<HTMLAudioElement>(null);
 const [playing, setPlaying] = useState(false);
 
 const AUDIO_SRCS: Record<Mode, string> = {
-  original: "/audio/original.mp3",
-  auto:     "/audio/auto-dub.mp3",
-  vox:      "/audio/premium-dub.mp3",
+  original: "src/public/audio/original.mp3",
+  auto:     "src/public/audio/auto-dub.mp3",
+  vox:      "src/public/audio/premium-dub.mp3",
 };
 
 useEffect(() => {
@@ -82,7 +82,26 @@ const handleSetMode = (k: Mode) => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
         <div className="absolute inset-0 grid-pattern opacity-40" />
-        
+        <video
+          ref={videoRef}
+          src="/src/public/video/demo.mp4"
+          muted
+          playsInline
+          loop
+          className="absolute inset-0 w-full h-full object-cover"
+          onClick={() => videoRef.current?.paused ? videoRef.current.play() : videoRef.current?.pause()}
+        />
+        <audio ref={audioRef} src={AUDIO_SRCS[mode]} preload="auto" />
+        {!playing && (
+          <div
+            className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer"
+            onClick={() => videoRef.current?.play()}
+          >
+            <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur flex items-center justify-center">
+              <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[18px] border-l-white ml-1" />
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="container mx-auto px-6">
