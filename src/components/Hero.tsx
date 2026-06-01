@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Check, X, Mic } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
@@ -30,12 +30,59 @@ export function Hero() {
   const [mode, setMode] = useState<Mode>("original");
   const s = MODE_STYLES[mode];
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+const audioRef = useRef<HTMLAudioElement>(null);
+const [playing, setPlaying] = useState(false);
+
+const AUDIO_SRCS: Record<Mode, string> = {
+  original: "/audio/original.mp3",
+  auto:     "/audio/auto-dub.mp3",
+  vox:      "/audio/premium-dub.mp3",
+};
+
+useEffect(() => {
+  const video = videoRef.current;
+  const audio = audioRef.current;
+  if (!video || !audio) return;
+
+  const onPlay  = () => { audio.play(); setPlaying(true); };
+  const onPause = () => { audio.pause(); setPlaying(false); };
+  const onSeek  = () => { audio.currentTime = video.currentTime; };
+
+  video.addEventListener("play",   onPlay);
+  video.addEventListener("pause",  onPause);
+  video.addEventListener("seeked", onSeek);
+
+  return () => {
+    video.removeEventListener("play",   onPlay);
+    video.removeEventListener("pause",  onPause);
+    video.removeEventListener("seeked", onSeek);
+  };
+}, []);
+
+// При смене дорожки синхронизируем время
+const handleSetMode = (k: Mode) => {
+  const video = videoRef.current;
+  const audio = audioRef.current;
+  if (video && audio) {
+    const wasPlaying = !video.paused;
+    setMode(k);
+    requestAnimationFrame(() => {
+      audio.currentTime = video.currentTime;
+      if (wasPlaying) audio.play();
+    });
+  } else {
+    setMode(k);
+  }
+};
+
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
         <div className="absolute inset-0 grid-pattern opacity-40" />
+        
       </div>
 
       <div className="container mx-auto px-6">
@@ -92,6 +139,26 @@ export function Hero() {
             <div className={`relative rounded-xl overflow-hidden bg-surface ring-1 transition-all duration-500 ${s.ringClass}`}>
               <div className="aspect-video relative bg-surface-elevated flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 grid-pattern opacity-30" />
+                <video
+                  ref={videoRef}
+                  src="/video/demo.mp4"
+                  muted
+                  playsInline
+                  loop
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onClick={() => videoRef.current?.paused ? videoRef.current.play() : videoRef.current?.pause()}
+                />
+                <audio ref={audioRef} src={AUDIO_SRCS[mode]} preload="auto" />
+                {!playing && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer"
+                    onClick={() => videoRef.current?.play()}
+                  >
+                    <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur flex items-center justify-center">
+                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[18px] border-l-white ml-1" />
+                    </div>
+                  </div>
+                )}
 
                 <div className={`absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${s.badgeClass}`}>
                   {mode === "vox" && <Check className="w-3 h-3" />}
@@ -144,7 +211,7 @@ export function Hero() {
                   return (
                     <button
                       key={k}
-                      onClick={() => setMode(k)}
+                      onClick={() => handleSetMode(k)}
                       aria-pressed={active}
                       className={`group relative flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-3 min-h-[56px] rounded-md text-[11px] sm:text-xs font-semibold transition-colors ${
                         active
