@@ -3,22 +3,18 @@ import { useT, type Lang } from "@/lib/i18n";
 
 function LanguageSwitcher() {
   const { lang, setLang } = useT();
-  const opts: Lang[] = ["en", "ru"];
+  const next: Lang = lang === "en" ? "ru" : "en";
+  const flags: Record<Lang, string> = { en: "🇺🇸", ru: "🇷🇺" };
+  const labels: Record<Lang, string> = { en: "EN", ru: "RU" };
   return (
-    <div className="inline-flex items-center rounded-md border border-border bg-surface p-0.5 text-[11px] font-semibold">
-      {opts.map((l) => (
-        <button
-          key={l}
-          onClick={() => setLang(l)}
-          aria-pressed={lang === l}
-          className={`px-2 py-1 rounded-[5px] uppercase tracking-wider transition-colors ${
-            lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          {l}
-        </button>
-      ))}
-    </div>
+    <button
+      onClick={() => setLang(next)}
+      title={next === "ru" ? "Switch to Russian" : "Switch to English"}
+      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+    >
+      <span className="text-base leading-none">{flags[next]}</span>
+      <span className="uppercase tracking-wider">{labels[next]}</span>
+    </button>
   );
 }
 
