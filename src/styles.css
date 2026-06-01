@@ -152,16 +152,20 @@
 
 @layer utilities {
   .glass {
-    background-color: color-mix(in oklab, var(--background) 80%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--border);
+    background-color: color-mix(in oklab, var(--background) 65%, transparent);
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+    box-shadow:
+      0 10px 40px -12px oklch(0 0 0 / 0.5),
+      inset 0 1px 0 color-mix(in oklab, var(--foreground) 6%, transparent);
   }
 
   .gradient-text {
-    color: var(--primary);
-    -webkit-text-fill-color: var(--primary);
-    background: none;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-glow) 60%, color-mix(in oklab, var(--primary-glow) 70%, white 30%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
   .grid-pattern {
@@ -171,12 +175,8 @@
     background-size: 48px 48px;
   }
 
-  .glow-border {
-    box-shadow: none;
-  }
+  .glow-border { box-shadow: var(--shadow-glow); }
+  .shadow-ambient { box-shadow: var(--shadow-ambient); }
 }
 
-/* Minimalist refinement — flatten decorative effects globally */
-[class*="blur-3xl"] { display: none !important; }
-.shadow-glow { box-shadow: none !important; }
 
