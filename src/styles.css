@@ -169,11 +169,21 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-glow) 60%, color-mix(in oklab, var(--primary-glow) 70%, white 30%) 100%);
+    background: linear-gradient(120deg, var(--primary) 0%, var(--accent-3) 45%, var(--accent-2) 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  .gradient-border {
+    position: relative;
+    background:
+      linear-gradient(var(--surface), var(--surface)) padding-box,
+      linear-gradient(135deg, var(--primary), var(--accent-2)) border-box;
+    border: 1px solid transparent;
   }
 
   .grid-pattern {
