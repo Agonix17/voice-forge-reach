@@ -47,11 +47,6 @@ const GIANTS: Giant[] = [
     { title: "Mikey vs JJ Build Battle", views: "180M" },
     { title: "Security House Challenge", views: "150M" },
   ]},
-  { name: "Technoblade", handle: "@Technoblade", initials: "TB", videos: [
-  { title: "Potato War 3", views: "55M" },
-  { title: "Skyblock Season 4", views: "42M" },
-  { title: "Minecraft Monday", views: "31M" },
-  ]},
 ];
 
 export function Opportunity() {
@@ -69,74 +64,69 @@ export function Opportunity() {
           <p className="mt-6 text-lg text-muted-foreground">{t("opp.subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {GIANTS.map((g, i) => (
             <article
               key={g.name}
-              className="group relative rounded-2xl border border-border bg-surface/80 backdrop-blur-sm p-5 shadow-xl shadow-black/30 hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 ease-out overflow-hidden h-full"
+              className="group rounded-xl border border-border bg-surface p-5 hover:border-primary/40 transition-colors duration-200"
               style={{ animation: "var(--animate-fade-up)", animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
-              <div className="pointer-events-none absolute -top-24 -right-24 w-56 h-56 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500" style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--primary) 40%, transparent), transparent 70%)" }} />
-              <header className="flex items-center justify-between mb-4 relative">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-11 h-11 rounded-full bg-surface-elevated border border-border flex items-center justify-center text-foreground font-semibold text-sm overflow-hidden flex-shrink-0 shadow-lg shadow-primary/10">
+              <header className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full bg-surface-elevated border border-border flex items-center justify-center text-foreground font-semibold text-sm overflow-hidden">
                     {g.logo ? (
                       <img src={g.logo} alt={`${g.name} logo`} className="w-full h-full object-cover" />
                     ) : (
                       g.initials
                     )}
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-base leading-tight truncate">{g.name}</h3>
-                    <p className="text-xs text-muted-foreground truncate">{g.handle}</p>
+                  <div>
+                    <h3 className="font-semibold text-base leading-tight">{g.name}</h3>
+                    <p className="text-xs text-muted-foreground">{g.handle}</p>
                   </div>
                 </div>
-                <div className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/40 px-2 py-0.5 text-[10px] font-bold text-primary flex-shrink-0 shadow-sm shadow-primary/30">
+                <div className="inline-flex items-center gap-1 rounded-md bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-bold text-primary">
                   <TrendingUp className="w-3 h-3" />
                   +30%
                 </div>
               </header>
 
-              <div className="grid grid-cols-3 gap-2 mb-4 relative">
+              <div className="grid grid-cols-3 gap-2 mb-4">
                 {g.videos.map((v, idx) => (
                   <div
                     key={idx}
-                    className="aspect-video rounded-md bg-surface-elevated relative overflow-hidden border border-border group-hover:border-primary/30 transition-colors"
+                    className="h-20 rounded-md bg-surface-elevated relative overflow-hidden border border-border"
                   >
                     {v.thumbnail ? (
-                      <img src={v.thumbnail} alt={v.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <img src={v.thumbnail} alt={v.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                     ) : (
                       <div className="absolute inset-0 grid-pattern opacity-40" />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-foreground bg-background/80 backdrop-blur-sm px-1 py-0.5 rounded">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
+                    <div className="absolute bottom-1 right-1 text-[9px] font-mono font-bold text-foreground bg-background/80 px-1 py-0.5 rounded">
                       {v.views}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center justify-between text-xs pt-3 border-t border-border relative">
+              <div className="flex items-center justify-between text-xs pt-3 border-t border-border">
                 <span className="text-muted-foreground">{t("opp.globalWatch")}</span>
                 <span className="font-semibold text-primary">{t("opp.uplift")}</span>
               </div>
             </article>
           ))}
 
-          <article
-            className="group relative rounded-2xl gradient-border p-5 flex flex-col items-center justify-center text-center min-h-[280px] shadow-2xl shadow-primary/20 hover:-translate-y-1 hover:shadow-primary/40 transition-all duration-300 ease-out overflow-hidden h-full"
-            style={{ animation: "var(--animate-fade-up)", animationDelay: `${GIANTS.length * 80}ms`, animationFillMode: "backwards" }}
-          >
-            <div className="pointer-events-none absolute inset-0 opacity-70" style={{ background: "radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--primary) 25%, transparent), transparent 70%)" }} />
-            <div className="relative text-3xl font-bold gradient-text mb-2">{t("opp.ctaTitle")}</div>
-            <p className="relative text-sm text-muted-foreground mb-5 max-w-xs">{t("opp.ctaDesc")}</p>
+          <div className="rounded-xl border border-dashed border-primary/40 bg-surface p-5 flex flex-col items-center justify-center text-center min-h-[280px]">
+            <div className="text-3xl font-bold text-primary mb-2">{t("opp.ctaTitle")}</div>
+            <p className="text-sm text-muted-foreground mb-5 max-w-xs">{t("opp.ctaDesc")}</p>
             <a
               href="#pricing"
-              className="relative inline-flex items-center justify-center min-h-[44px] rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300"
+              className="inline-flex items-center justify-center min-h-[44px] rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity"
             >
               {t("opp.ctaBtn")}
             </a>
-          </article>
+          </div>
         </div>
       </div>
     </section>
