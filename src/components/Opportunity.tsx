@@ -47,6 +47,11 @@ const GIANTS: Giant[] = [
     { title: "Mikey vs JJ Build Battle", views: "180M" },
     { title: "Security House Challenge", views: "150M" },
   ]},
+  { name: "Technoblade", handle: "@Technoblade", initials: "TB", videos: [
+  { title: "Potato War 3", views: "55M" },
+  { title: "Skyblock Season 4", views: "42M" },
+  { title: "Minecraft Monday", views: "31M" },
+  ]},
 ];
 
 export function Opportunity() {
