@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Check, X, Mic } from "lucide-react";
+import { Check, X, Mic, Play, Pause } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
 type Mode = "original" | "auto" | "vox";
@@ -25,56 +25,88 @@ const MODE_STYLES: Record<Mode, { waveColor: string; ringClass: string; badgeCla
   },
 };
 
+const AUDIO_SRCS: Record<Mode, string> = {
+  original: "/audio/original.mp3",
+  auto: "/audio/auto-dub.mp3",
+  vox: "/audio/premium-dub.mp3",
+};
+
+const fmt = (s: number) => {
+  if (!isFinite(s) || s < 0) s = 0;
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+};
+
 export function Hero() {
   const { t } = useT();
   const [mode, setMode] = useState<Mode>("original");
   const s = MODE_STYLES[mode];
 
   const videoRef = useRef<HTMLVideoElement>(null);
-const audioRef = useRef<HTMLAudioElement>(null);
-const [playing, setPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-const AUDIO_SRCS: Record<Mode, string> = {
-  original: "src/public/audio/original.mp3",
-  auto:     "src/public/audio/auto-dub.mp3",
-  vox:      "src/public/audio/premium-dub.mp3",
-};
+  useEffect(() => {
+    const video = videoRef.current;
+    const audio = audioRef.current;
+    if (!video || !audio) return;
 
-useEffect(() => {
-  const video = videoRef.current;
-  const audio = audioRef.current;
-  if (!video || !audio) return;
+    const onPlay = () => { audio.play().catch(() => {}); setPlaying(true); };
+    const onPause = () => { audio.pause(); setPlaying(false); };
+    const onSeek = () => { audio.currentTime = video.currentTime; };
+    const onEnded = () => { audio.pause(); setPlaying(false); };
+    const onTime = () => setCurrentTime(video.currentTime);
+    const onMeta = () => setDuration(video.duration || 0);
 
-  const onPlay  = () => { audio.play(); setPlaying(true); };
-  const onPause = () => { audio.pause(); setPlaying(false); };
-  const onSeek  = () => { audio.currentTime = video.currentTime; };
+    video.addEventListener("play", onPlay);
+    video.addEventListener("pause", onPause);
+    video.addEventListener("seeked", onSeek);
+    video.addEventListener("ended", onEnded);
+    video.addEventListener("timeupdate", onTime);
+    video.addEventListener("loadedmetadata", onMeta);
 
-  video.addEventListener("play",   onPlay);
-  video.addEventListener("pause",  onPause);
-  video.addEventListener("seeked", onSeek);
+    return () => {
+      video.removeEventListener("play", onPlay);
+      video.removeEventListener("pause", onPause);
+      video.removeEventListener("seeked", onSeek);
+      video.removeEventListener("ended", onEnded);
+      video.removeEventListener("timeupdate", onTime);
+      video.removeEventListener("loadedmetadata", onMeta);
+    };
+  }, []);
 
-  return () => {
-    video.removeEventListener("play",   onPlay);
-    video.removeEventListener("pause",  onPause);
-    video.removeEventListener("seeked", onSeek);
-  };
-}, []);
-
-// При смене дорожки синхронизируем время
-const handleSetMode = (k: Mode) => {
-  const video = videoRef.current;
-  const audio = audioRef.current;
-  if (video && audio) {
-    const wasPlaying = !video.paused;
+  const switchTrack = (k: Mode) => {
+    const video = videoRef.current;
+    const audio = audioRef.current;
+    const wasPlaying = video ? !video.paused : false;
+    const time = video ? video.currentTime : 0;
     setMode(k);
     requestAnimationFrame(() => {
-      audio.currentTime = video.currentTime;
-      if (wasPlaying) audio.play();
+      const a = audioRef.current;
+      if (!a) return;
+      a.currentTime = time;
+      if (wasPlaying) a.play().catch(() => {});
     });
-  } else {
-    setMode(k);
-  }
-};
+  };
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play().catch(() => {});
+    else v.pause();
+  };
+
+  const onScrub = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const t = Number(e.target.value);
+    if (videoRef.current) videoRef.current.currentTime = t;
+    if (audioRef.current) audioRef.current.currentTime = t;
+    setCurrentTime(t);
+  };
+
+  const progressPct = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
@@ -82,26 +114,6 @@ const handleSetMode = (k: Mode) => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
         <div className="absolute inset-0 grid-pattern opacity-40" />
-        <video
-          ref={videoRef}
-          src="/src/public/video/demo.mp4"
-          muted
-          playsInline
-          loop
-          className="absolute inset-0 w-full h-full object-cover"
-          onClick={() => videoRef.current?.paused ? videoRef.current.play() : videoRef.current?.pause()}
-        />
-        <audio ref={audioRef} src={AUDIO_SRCS[mode]} preload="auto" />
-        {!playing && (
-          <div
-            className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer"
-            onClick={() => videoRef.current?.play()}
-          >
-            <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur flex items-center justify-center">
-              <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[18px] border-l-white ml-1" />
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="container mx-auto px-6">
@@ -164,29 +176,38 @@ const handleSetMode = (k: Mode) => {
                   muted
                   playsInline
                   loop
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onClick={() => videoRef.current?.paused ? videoRef.current.play() : videoRef.current?.pause()}
+                  className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+                  onClick={togglePlay}
                 />
-                <audio ref={audioRef} src={AUDIO_SRCS[mode]} preload="auto" />
+                <audio ref={audioRef} src={AUDIO_SRCS[mode]} preload="auto" loop />
+
                 {!playing && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer"
-                    onClick={() => videoRef.current?.play()}
+                  <button
+                    type="button"
+                    aria-label="Play"
+                    onClick={togglePlay}
+                    className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer bg-black/20 hover:bg-black/30 transition-colors"
                   >
-                    <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur flex items-center justify-center">
-                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[18px] border-l-white ml-1" />
+                    <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur flex items-center justify-center">
+                      <Play className="w-6 h-6 text-white ml-0.5" fill="currentColor" />
                     </div>
-                  </div>
+                  </button>
                 )}
 
-                <div className={`absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${s.badgeClass}`}>
+                <div className={`absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[10px] font-bold uppercase tracking-wider transition-all duration-300 z-20 ${s.badgeClass}`}>
                   {mode === "vox" && <Check className="w-3 h-3" />}
                   {mode === "auto" && <X className="w-3 h-3" />}
                   {mode === "original" && <Mic className="w-3 h-3" />}
                   {t(`mode.${mode}.badge`)}
                 </div>
 
-                <div className="flex items-end gap-1 h-16 sm:h-24 px-4 sm:px-8">
+                <div className="absolute top-4 right-4 hidden sm:block z-20">
+                  <span key={`v-${mode}`} className={`text-[10px] font-bold uppercase tracking-wider ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>
+                    {t(`mode.${mode}.vibe`)}
+                  </span>
+                </div>
+
+                <div className="pointer-events-none absolute bottom-10 sm:bottom-12 left-0 right-0 flex items-end justify-center gap-1 h-16 sm:h-20 px-4 sm:px-8 z-10">
                   {Array.from({ length: 32 }).map((_, i) => (
                     <span
                       key={i}
@@ -200,26 +221,38 @@ const handleSetMode = (k: Mode) => {
                   ))}
                 </div>
 
-                <div className="absolute top-4 right-4 hidden sm:block">
-                  <span key={`v-${mode}`} className={`text-[10px] font-bold uppercase tracking-wider ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>
-                    {t(`mode.${mode}.vibe`)}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-10 sm:bottom-12 left-0 right-0 px-3 sm:px-6 text-center">
+                <div className="absolute bottom-2 left-0 right-0 px-3 sm:px-6 text-center z-10">
                   <div key={mode} className="inline-block bg-background/90 rounded px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium max-w-md" style={{ animation: "var(--animate-fade-in)" }}>
                     {t(`mode.${mode}.caption`)}
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-border">
-                  <div className="h-full transition-all duration-500" style={{ width: "42%", backgroundColor: s.waveColor }} />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-border z-10">
+                  <div className="h-full transition-[width] duration-150" style={{ width: `${progressPct}%`, backgroundColor: s.waveColor }} />
                 </div>
               </div>
 
-              <div className="px-4 sm:px-5 py-3 border-t border-border flex items-center justify-between gap-2 text-[11px] sm:text-xs">
-                <span className="font-mono text-muted-foreground flex-shrink-0">02:14 / 05:21</span>
-                <span key={`q-${mode}`} className={`font-semibold text-right ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>{t(`mode.${mode}.quality`)}</span>
+              <div className="px-4 sm:px-5 py-3 border-t border-border flex items-center gap-3 text-[11px] sm:text-xs">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  aria-label={playing ? "Pause" : "Play"}
+                  className="flex-shrink-0 w-7 h-7 rounded-full bg-surface-elevated hover:bg-primary/20 flex items-center justify-center transition-colors"
+                >
+                  {playing ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" fill="currentColor" />}
+                </button>
+                <span className="font-mono text-muted-foreground flex-shrink-0 tabular-nums">{fmt(currentTime)} / {fmt(duration)}</span>
+                <input
+                  type="range"
+                  min={0}
+                  max={duration || 0}
+                  step={0.01}
+                  value={currentTime}
+                  onChange={onScrub}
+                  aria-label="Seek"
+                  className="flex-1 h-1 accent-primary cursor-pointer"
+                />
+                <span key={`q-${mode}`} className={`font-semibold text-right flex-shrink-0 ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>{t(`mode.${mode}.quality`)}</span>
               </div>
 
               <div className="grid grid-cols-3 gap-2 p-3 border-t border-border">
@@ -230,7 +263,7 @@ const handleSetMode = (k: Mode) => {
                   return (
                     <button
                       key={k}
-                      onClick={() => handleSetMode(k)}
+                      onClick={() => switchTrack(k)}
                       aria-pressed={active}
                       className={`group relative flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-3 min-h-[56px] rounded-md text-[11px] sm:text-xs font-semibold transition-colors ${
                         active
@@ -239,6 +272,8 @@ const handleSetMode = (k: Mode) => {
                             : isAuto
                             ? "bg-destructive/15 text-destructive border border-destructive/40"
                             : "bg-surface-elevated text-foreground border border-border"
+                          : isAuto
+                          ? "text-destructive/70 hover:text-destructive hover:bg-destructive/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-surface-elevated"
                       }`}
                     >
@@ -262,4 +297,4 @@ const handleSetMode = (k: Mode) => {
       </div>
     </section>
   );
-                      }
+}
