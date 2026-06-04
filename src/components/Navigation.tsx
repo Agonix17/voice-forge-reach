@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import { useT, type Lang } from "@/lib/i18n";
+import enFlag from "@/assets/flags/en.svg";
+import ruFlag from "@/assets/flags/ru.svg";
 
 function LanguageSwitcher() {
   const { lang, setLang } = useT();
   const next: Lang = lang === "en" ? "ru" : "en";
-  const flags: Record<Lang, string> = { en: "🇺🇸", ru: "🇷🇺" };
+  const flagSrc: Record<Lang, string> = { en: enFlag, ru: ruFlag };
   const labels: Record<Lang, string> = { en: "EN", ru: "RU" };
   return (
     <button
       onClick={() => setLang(next)}
       title={next === "ru" ? "Switch to Russian" : "Switch to English"}
-      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-[11px] font-semibold text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
     >
-      <span className="text-base leading-none">{flags[next]}</span>
+      <img
+        src={flagSrc[next]}
+        alt={labels[next]}
+        width={20}
+        height={14}
+        className="w-5 h-[14px] rounded-sm object-cover border border-border/60"
+      />
       <span className="uppercase tracking-wider">{labels[next]}</span>
     </button>
   );
