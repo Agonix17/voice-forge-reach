@@ -6,7 +6,7 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative">
+    <section id="contact" className="py-14 md:py-20 relative">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">

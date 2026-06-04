@@ -16,7 +16,7 @@ export function WhyUs() {
     { v: "98%", l: t("why.stat4") },
   ];
   return (
-    <section id="why" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="why" className="py-14 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
