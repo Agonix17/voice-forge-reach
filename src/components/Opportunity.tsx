@@ -237,8 +237,8 @@ function GiantCard({ g, i }: { g: Giant; i: number }) {
       </div>
 
       <div className="flex items-center justify-between text-xs pt-3 border-t border-border mt-auto">
-        <span className="text-muted-foreground truncate">{t("opp.globalWatch")}</span>
-        <span className="font-semibold text-primary">{t("opp.uplift")}</span>
+        <span className="text-muted-foreground truncate">{g.globalWatchTime}</span>
+        <span className="font-semibold text-primary">{g.uplift}</span>
       </div>
     </article>
   );
