@@ -157,19 +157,19 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "Mumbo Jumbo", handle: "@ThatMumboJumbo", logo: mumboAvatar, uplift: "+24%", globalWatchTime: "Global Watch Time",
-    previews: [
-      { thumbnail: mumbo1, views: "22M" },
-      { thumbnail: mumbo2, views: "18M" },
-      { thumbnail: mumbo3, views: "15M" },
-    ],
-  },
-  {
     name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: captainsparklez1, views: "48M" },
       { thumbnail: captainsparklez2, views: "36M" },
       { thumbnail: captainsparklez3, views: "29M" },
+    ],
+  },
+  {
+    name: "Mumbo Jumbo", handle: "@ThatMumboJumbo", logo: mumboAvatar, uplift: "+24%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: mumbo1, views: "22M" },
+      { thumbnail: mumbo2, views: "18M" },
+      { thumbnail: mumbo3, views: "15M" },
     ],
   },
   {
@@ -283,7 +283,7 @@ export function Opportunity() {
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
           {ROW2.map((g, i) => (
             <Fragment key={`r2-${i}`}>
-              {i === 3 && <CtaCard />}
+              {i === 5 && <CtaCard />}
               <GiantCard g={g} i={i} />
             </Fragment>
           ))}
