@@ -67,12 +67,13 @@ type Giant = {
   handle: string;
   logo: string;
   uplift: string;
+  globalWatchTime: string;
   previews: [Preview, Preview, Preview];
 };
 
 const ROW1: Giant[] = [
   {
-    name: "MrBeast Gaming", handle: "@MrBeastGaming", logo: mrbeastAvatar, uplift: "+30%",
+    name: "MrBeast Gaming", handle: "@MrBeastGaming", logo: mrbeastAvatar, uplift: "+30%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: mrbeast1, views: "82M" },
       { thumbnail: mrbeast2, views: "61M" },
@@ -80,7 +81,7 @@ const ROW1: Giant[] = [
     ],
   },
   {
-    name: "Dream", handle: "@Dream", logo: dreamAvatar, uplift: "+35%",
+    name: "Dream", handle: "@Dream", logo: dreamAvatar, uplift: "+35%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: dream1, views: "120M" },
       { thumbnail: dream2, views: "89M" },
@@ -88,7 +89,7 @@ const ROW1: Giant[] = [
     ],
   },
   {
-    name: "Karl Jacobs", handle: "@Karl", logo: karlAvatar, uplift: "+25%",
+    name: "Karl Jacobs", handle: "@Karl", logo: karlAvatar, uplift: "+25%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: karl1, views: "12M" },
       { thumbnail: karl2, views: "9.4M" },
@@ -96,7 +97,7 @@ const ROW1: Giant[] = [
     ],
   },
   {
-    name: "Athos", handle: "@Athosgamer", logo: athosAvatar, uplift: "+29%",
+    name: "Athos", handle: "@Athosgamer", logo: athosAvatar, uplift: "+29%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: athos1, views: "18M" },
       { thumbnail: athos2, views: "14M" },
@@ -104,7 +105,7 @@ const ROW1: Giant[] = [
     ],
   },
   {
-    name: "Maizen", handle: "@maizenofficial", logo: maizenAvatar, uplift: "+40%",
+    name: "Maizen", handle: "@maizenofficial", logo: maizenAvatar, uplift: "+40%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: maizen1, views: "240M" },
       { thumbnail: maizen2, views: "180M" },
@@ -112,18 +113,26 @@ const ROW1: Giant[] = [
     ],
   },
   {
-    name: "PopularMMOs", handle: "@PopularMMOs", logo: popularmmosAvatar, uplift: "+28%",
+    name: "PopularMMOs", handle: "@PopularMMOs", logo: popularmmosAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: popularmmos1, views: "26M" },
       { thumbnail: popularmmos2, views: "19M" },
       { thumbnail: popularmmos3, views: "14M" },
     ],
   },
+  {
+    name: "Ssundee", handle: "@Ssundee", logo: ssundeeAvatar, uplift: "+29%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: ssundee1, views: "44M" },
+      { thumbnail: ssundee2, views: "31M" },
+      { thumbnail: ssundee3, views: "22M" },
+    ],
+  },
 ];
 
 const ROW2: Giant[] = [
   {
-    name: "Technoblade", handle: "@Technoblade", logo: technobladeAvatar, uplift: "+32%",
+    name: "Technoblade", handle: "@Technoblade", logo: technobladeAvatar, uplift: "+32%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: techno1, views: "55M" },
       { thumbnail: techno2, views: "42M" },
@@ -131,7 +140,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "Stampy", handle: "@stampylonghead", logo: stampyAvatar, uplift: "+26%",
+    name: "Stampy", handle: "@stampylonghead", logo: stampyAvatar, uplift: "+26%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: stampy1, views: "31M" },
       { thumbnail: stampy2, views: "24M" },
@@ -139,7 +148,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "Grian", handle: "@Grian", logo: grianAvatar, uplift: "+34%",
+    name: "Grian", handle: "@Grian", logo: grianAvatar, uplift: "+34%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: grian1, views: "28M" },
       { thumbnail: grian2, views: "21M" },
@@ -147,7 +156,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "Mumbo Jumbo", handle: "@ThatMumboJumbo", logo: mumboAvatar, uplift: "+24%",
+    name: "Mumbo Jumbo", handle: "@ThatMumboJumbo", logo: mumboAvatar, uplift: "+24%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: mumbo1, views: "22M" },
       { thumbnail: mumbo2, views: "18M" },
@@ -155,7 +164,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%",
+    name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: captainsparklez1, views: "48M" },
       { thumbnail: captainsparklez2, views: "36M" },
@@ -163,7 +172,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "Aphmau", handle: "@Aphmau", logo: aphmauAvatar, uplift: "+31%",
+    name: "Aphmau", handle: "@Aphmau", logo: aphmauAvatar, uplift: "+31%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: aphmau1, views: "72M" },
       { thumbnail: aphmau2, views: "58M" },
@@ -171,7 +180,7 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "PrestonPlayz", handle: "@PrestonPlayz", logo: prestonplayzAvatar, uplift: "+27%",
+    name: "PrestonPlayz", handle: "@PrestonPlayz", logo: prestonplayzAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: prestonplayz1, views: "39M" },
       { thumbnail: prestonplayz2, views: "27M" },
