@@ -57,6 +57,9 @@ import aphmau3 from "@/assets/previews/aphmau-3.jpg";
 import prestonplayz1 from "@/assets/previews/prestonplayz-1.jpg";
 import prestonplayz2 from "@/assets/previews/prestonplayz-2.jpg";
 import prestonplayz3 from "@/assets/previews/prestonplayz-3.jpg";
+import ssundee1 from "@/assets/previews/ssundee-1.jpg";
+import ssundee2 from "@/assets/previews/ssundee-2.jpg";
+import ssundee3 from "@/assets/previews/ssundee-3.jpg";
 
 type Preview = { thumbnail: string; views: string };
 type Giant = {
