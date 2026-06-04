@@ -179,14 +179,6 @@ const ROW2: Giant[] = [
       { thumbnail: aphmau3, views: "41M" },
     ],
   },
-  {
-    name: "PrestonPlayz", handle: "@PrestonPlayz", logo: prestonplayzAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
-    previews: [
-      { thumbnail: prestonplayz1, views: "39M" },
-      { thumbnail: prestonplayz2, views: "27M" },
-      { thumbnail: prestonplayz3, views: "20M" },
-    ],
-  },
 ];
 
 function GiantCard({ g, i }: { g: Giant; i: number }) {
