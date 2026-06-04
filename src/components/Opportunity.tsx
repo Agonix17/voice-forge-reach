@@ -15,6 +15,7 @@ import popularmmosAvatar from "@/assets/avatars/popularmmos.jpg";
 import captainsparklezAvatar from "@/assets/avatars/captainsparklez.jpg";
 import aphmauAvatar from "@/assets/avatars/aphmau.jpg";
 import prestonplayzAvatar from "@/assets/avatars/prestonplayz.jpg";
+import ssundeeAvatar from "@/assets/avatars/ssundee.jpg";
 
 // Previews
 import mrbeast1 from "@/assets/previews/mrbeast-1.jpg";
