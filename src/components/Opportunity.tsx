@@ -190,7 +190,6 @@ const ROW2: Giant[] = [
 ];
 
 function GiantCard({ g, i }: { g: Giant; i: number }) {
-  const { t } = useT();
   return (
     <article
       className="group flex flex-col w-[280px] flex-shrink-0 rounded-xl border border-border bg-surface p-5 hover:border-primary/40 transition-colors duration-200"
