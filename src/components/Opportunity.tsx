@@ -281,9 +281,11 @@ export function Opportunity() {
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
           {ROW2.map((g, i) => (
-            <GiantCard key={`r2-${i}`} g={g} i={i} />
+            <Fragment key={`r2-${i}`}>
+              {i === 3 && <CtaCard />}
+              <GiantCard g={g} i={i} />
+            </Fragment>
           ))}
-          <CtaCard />
         </div>
       </div>
     </section>
