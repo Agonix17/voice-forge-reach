@@ -9,7 +9,7 @@ export function Process() {
     { icon: Upload, title: t("process.step3.title"), desc: t("process.step3.desc") },
   ];
   return (
-    <section id="process" className="py-24 md:py-32 relative">
+    <section id="process" className="py-14 md:py-20 relative">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-block text-xs font-mono text-primary uppercase tracking-widest mb-4">

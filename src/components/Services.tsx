@@ -33,7 +33,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 md:py-32 relative">
+    <section id="services" className="py-14 md:py-20 relative">
       <div className="container mx-auto px-6 relative">
         <div className="max-w-2xl mb-16">
           <div className="inline-block text-xs font-mono text-primary uppercase tracking-widest mb-4">
