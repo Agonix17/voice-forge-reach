@@ -179,14 +179,6 @@ const ROW2: Giant[] = [
       { thumbnail: aphmau3, views: "41M" },
     ],
   },
-  {
-    name: "PrestonPlayz", handle: "@PrestonPlayz", logo: prestonplayzAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
-    previews: [
-      { thumbnail: prestonplayz1, views: "39M" },
-      { thumbnail: prestonplayz2, views: "27M" },
-      { thumbnail: prestonplayz3, views: "20M" },
-    ],
-  },
 ];
 
 function GiantCard({ g, i }: { g: Giant; i: number }) {
@@ -246,12 +238,17 @@ function GiantCard({ g, i }: { g: Giant; i: number }) {
 function CtaCard() {
   const { t } = useT();
   return (
-    <article className="flex flex-col items-center justify-center text-center w-[280px] flex-shrink-0 rounded-xl border border-dashed border-primary/40 bg-surface p-5 gradient-border">
-      <div className="text-2xl font-bold text-primary mb-2">{t("opp.ctaTitle")}</div>
-      <p className="text-sm text-muted-foreground mb-5 max-w-xs">{t("opp.ctaDesc")}</p>
+    <article className="relative overflow-hidden flex flex-col items-center justify-center text-center w-[280px] flex-shrink-0 rounded-xl border border-dashed border-primary/40 bg-surface p-5 gradient-border">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)" }}
+      />
+      <div className="relative text-2xl font-bold gradient-text mb-2">{t("opp.ctaTitle")}</div>
+      <p className="relative text-sm text-muted-foreground mb-5 max-w-xs">{t("opp.ctaDesc")}</p>
       <a
         href="#pricing"
-        className="inline-flex items-center justify-center min-h-[44px] rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 transition-all"
+        className="relative inline-flex w-full items-center justify-center min-h-[44px] rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 transition-all"
       >
         {t("opp.ctaBtn")}
       </a>
