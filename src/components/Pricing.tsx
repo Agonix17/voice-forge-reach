@@ -21,7 +21,7 @@ const FEATURES: { key: string; gift: boolean }[] = [
 
 export function Pricing() {
   const { t } = useT();
-  const { setSelectedPackage } = usePackageStore();
+  const { setSelectedPackage, toggleAddon } = usePackageStore();
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
   const total = useMemo(
@@ -126,7 +126,7 @@ export function Pricing() {
                 return (
                   <li key={u.id}>
                     <button
-                      onClick={() => setSelected((s) => ({ ...s, [u.id]: !s[u.id] }))}
+                      onClick={() => { setSelected((s) => ({ ...s, [u.id]: !s[u.id] })); toggleAddon(t(u.textKey)); }}
                       className={`w-full flex items-center justify-between gap-3 rounded-md border px-4 py-3 min-h-[52px] text-left text-sm transition-colors ${
                         on
                           ? "border-primary bg-primary/10 text-foreground"

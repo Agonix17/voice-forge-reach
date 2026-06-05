@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
+import { Check } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { usePackageStore } from "@/lib/selectedPackage";
 
@@ -9,26 +10,19 @@ const PUBLIC_KEY = "2E_DVenRQODCOAZOp";
 
 export function Contact() {
   const { t } = useT();
-  const { selectedPackage, setSelectedPackage } = usePackageStore();
+  const { selectedPackage, selectedAddons, setSelectedPackage, clearAll } = usePackageStore();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [form, setForm] = useState({ youtubeUrl: "", email: "", package: "", message: "" });
+  const [form, setForm] = useState({ youtubeUrl: "", email: "", message: "" });
 
   useEffect(() => {
-    if (selectedPackage) {
-      setForm((f) => ({ ...f, package: selectedPackage }));
-      return;
-    }
+    if (selectedPackage) return;
     try {
       const pkg = sessionStorage.getItem("selected_package");
-      if (pkg) {
-        setForm((f) => ({ ...f, package: pkg }));
-        setSelectedPackage(pkg);
-      }
+      if (pkg) setSelectedPackage(pkg);
     } catch {}
   }, [selectedPackage, setSelectedPackage]);
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +35,8 @@ export function Contact() {
         {
           youtube_url: form.youtubeUrl,
           client_email: form.email,
-          selected_package: form.package,
+          selected_package: selectedPackage,
+          selected_addons: selectedAddons.join(", "),
           message: form.message,
         },
         PUBLIC_KEY,
@@ -95,30 +90,46 @@ export function Contact() {
                   className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
                 />
               </div>
-              {form.package && (
-                <div>
-                  <label className="block text-sm font-medium mb-2">{t("contact.package") || "Package"}</label>
-                  <div className="mb-2 inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary">
-                    <span>✓ Selected: {form.package}</span>
-                    <button
-                      type="button"
-                      disabled={submitted}
-                      onClick={() => { setForm((f) => ({ ...f, package: "" })); setSelectedPackage(""); try { sessionStorage.removeItem("selected_package"); } catch {} }}
-                      className="text-primary/70 hover:text-primary disabled:opacity-50"
-                      aria-label="Clear selected package"
-                    >
-                      ✕
-                    </button>
+
+              <div>
+                {selectedPackage ? (
+                  <div className="rounded-xl border border-primary/40 bg-primary/10 p-4">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                        Selected Package
+                      </div>
+                      <a href="#pricing" className="text-xs text-primary underline">Change plan →</a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-primary" />
+                      <span className="font-semibold text-primary text-sm">{selectedPackage}</span>
+                    </div>
+                    {selectedAddons.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {selectedAddons.map((addon) => (
+                          <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/30 px-2 py-1 text-xs text-primary font-medium">
+                            <Check className="w-3 h-3" /> {addon}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {!submitted && (
+                      <button
+                        type="button"
+                        onClick={() => { clearAll(); try { sessionStorage.removeItem("selected_package"); } catch {} }}
+                        className="mt-3 text-xs text-muted-foreground hover:text-foreground underline"
+                      >
+                        Clear selection
+                      </button>
+                    )}
                   </div>
-                  <input
-                    type="text"
-                    disabled={submitted}
-                    value={form.package}
-                    onChange={(e) => { setForm({ ...form, package: e.target.value }); setSelectedPackage(e.target.value); }}
-                    className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
-                  />
-                </div>
-              )}
+                ) : (
+                  <div className="rounded-xl border border-border bg-surface p-4 text-muted-foreground text-sm flex items-center justify-between gap-3">
+                    <span>No package selected — choose a plan from the pricing section above</span>
+                    <a href="#pricing" className="text-xs text-primary underline whitespace-nowrap">Change plan →</a>
+                  </div>
+                )}
+              </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2">{t("contact.message")}</label>
