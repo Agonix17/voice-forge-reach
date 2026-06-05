@@ -97,6 +97,7 @@ export function Pricing() {
 
             <a
               href="#contact"
+              onClick={() => { try { sessionStorage.setItem("selected_package", t("price.packName")); } catch {} }}
               className="block text-center rounded-md bg-primary text-primary-foreground px-5 py-4 min-h-[52px] text-base font-semibold hover:opacity-90 transition-opacity"
             >
               {t("price.cta")}
