@@ -250,14 +250,15 @@ const ROW3: Giant[] = [
     ],
   },
   {
-    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    name: "Joel (Smallishbeansalt)", handle: "@Smallishbeansalt", logo: joelAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
     previews: [
-      { thumbnail: bikinibodhi1, views: "12M" },
-      { thumbnail: bikinibodhi2, views: "8.7M" },
-      { thumbnail: bikinibodhi3, views: "6.3M" },
+      { thumbnail: joel1, views: "10M" },
+      { thumbnail: joel2, views: "7.4M" },
+      { thumbnail: joel3, views: "5.1M" },
     ],
   },
 ];
+
 
 function GiantCard({ g, i }: { g: Giant; i: number }) {
   return (
