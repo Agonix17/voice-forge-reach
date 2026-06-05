@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Check, Gift, Plus, Sparkles, Flame } from "lucide-react";
 import { useT } from "@/lib/i18n";
+import { usePackageStore } from "@/lib/selectedPackage";
+
 
 const BASE_PRICE = 75;
 const UPSELLS = [
@@ -19,7 +21,9 @@ const FEATURES: { key: string; gift: boolean }[] = [
 
 export function Pricing() {
   const { t } = useT();
+  const { setSelectedPackage } = usePackageStore();
   const [selected, setSelected] = useState<Record<string, boolean>>({});
+
   const total = useMemo(
     () => BASE_PRICE + UPSELLS.reduce((acc, u) => acc + (selected[u.id] ? u.price : 0), 0),
     [selected],
@@ -97,7 +101,8 @@ export function Pricing() {
 
             <a
               href="#contact"
-              onClick={() => { try { sessionStorage.setItem("selected_package", t("price.packName")); } catch {} }}
+              onClick={() => { setSelectedPackage(`${t("price.packName")} (${t("price.packPrice")})`); try { sessionStorage.setItem("selected_package", `${t("price.packName")} (${t("price.packPrice")})`); } catch {} }}
+
               className="block text-center rounded-md bg-primary text-primary-foreground px-5 py-4 min-h-[52px] text-base font-semibold hover:opacity-90 transition-opacity"
             >
               {t("price.cta")}
@@ -150,7 +155,7 @@ export function Pricing() {
               </div>
               <a
                 href="#contact"
-                onClick={() => { try { const addons = UPSELLS.filter(u => selected[u.id]).map(u => t(u.textKey)).join(", "); sessionStorage.setItem("selected_package", `${t("price.packName")} ($${total})${addons ? " + " + addons : ""}`); } catch {} }}
+                onClick={() => { const addons = UPSELLS.filter(u => selected[u.id]).map(u => t(u.textKey)).join(", "); const pkg = `${t("price.packName")} ($${total})${addons ? " + " + addons : ""}`; setSelectedPackage(pkg); try { sessionStorage.setItem("selected_package", pkg); } catch {} }}
                 className="block text-center rounded-md border border-primary/40 bg-primary/10 text-primary px-5 py-3 min-h-[44px] text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 {t("price.lockIn")}
