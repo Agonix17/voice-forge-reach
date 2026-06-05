@@ -207,30 +207,11 @@ export function Hero() {
                   </span>
                 </div>
 
-                <div className="pointer-events-none absolute bottom-10 sm:bottom-12 left-0 right-0 flex items-end justify-center gap-1 h-16 sm:h-20 px-4 sm:px-8 z-10">
-                  {Array.from({ length: 32 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className="w-1 sm:w-1.5 rounded-full transition-all duration-500"
-                      style={{
-                        backgroundColor: s.waveColor,
-                        height: `${20 + Math.abs(Math.sin((i + (mode === "auto" ? 0 : mode === "vox" ? 2 : 1)) * 0.6)) * 80}%`,
-                        opacity: mode === "auto" ? 0.45 : 0.85,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                <div className="absolute bottom-2 left-0 right-0 px-3 sm:px-6 text-center z-10">
-                  <div key={mode} className="inline-block bg-background/90 rounded px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium max-w-md" style={{ animation: "var(--animate-fade-in)" }}>
-                    {t(`mode.${mode}.caption`)}
-                  </div>
-                </div>
-
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-border z-10">
                   <div className="h-full transition-[width] duration-150" style={{ width: `${progressPct}%`, backgroundColor: s.waveColor }} />
                 </div>
               </div>
+
 
               <div className="px-4 sm:px-5 py-3 border-t border-border flex items-center gap-3 text-[11px] sm:text-xs">
                 <button
