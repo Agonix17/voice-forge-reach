@@ -29,7 +29,7 @@ export function WhyUs() {
   const { t } = useT();
   const [sectionRef, inView] = useInViewOnce<HTMLElement>();
   return (
-    <section id="why" className="py-14 md:py-20 relative overflow-hidden">
+    <section ref={sectionRef} id="why" className="py-14 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -44,11 +44,8 @@ export function WhyUs() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">{t("why.subtitle")}</p>
 
             <div className="grid grid-cols-2 gap-4 sm:gap-6">
-              {stats.map((s) => (
-                <div key={s.l}>
-                  <div className="text-3xl font-bold text-primary">{s.v}</div>
-                  <div className="text-sm text-muted-foreground mt-1">{s.l}</div>
-                </div>
+              {STAT_DEFS.map((s) => (
+                <StatItem key={s.labelKey} target={s.target} prefix={s.prefix} suffix={s.suffix} label={t(s.labelKey)} start={inView} />
               ))}
             </div>
           </div>
