@@ -1,4 +1,8 @@
 import { useT } from "@/lib/i18n";
+import voiceCloningImg from "@/assets/features/voice-cloning.jpg";
+import syncLocalizationImg from "@/assets/features/sync-localization.jpg";
+import targetedTagsImg from "@/assets/features/targeted-tags.jpg";
+import dynamicSubtitlesImg from "@/assets/features/dynamic-subtitles.jpg";
 
 const ICONS = {
   voice: (
@@ -26,10 +30,10 @@ const ICONS = {
 export function Services() {
   const { t } = useT();
   const services = [
-    { key: "s1", name: "Vox-Voice", tag: "Core", icon: ICONS.voice },
-    { key: "s2", name: "Visual Localize", tag: "Visual", icon: ICONS.thumb },
-    { key: "s3", name: "Meta-Data SEO", tag: "Growth", icon: ICONS.seo },
-    { key: "s4", name: "Smart Captions", tag: "Engagement", icon: ICONS.caption },
+    { key: "s1", name: "Vox-Voice", tag: "Core", icon: ICONS.voice, image: voiceCloningImg },
+    { key: "s2", name: "Visual Localize", tag: "Visual", icon: ICONS.thumb, image: syncLocalizationImg },
+    { key: "s3", name: "Meta-Data SEO", tag: "Growth", icon: ICONS.seo, image: targetedTagsImg },
+    { key: "s4", name: "Smart Captions", tag: "Engagement", icon: ICONS.caption, image: dynamicSubtitlesImg },
   ];
 
   return (
@@ -49,9 +53,18 @@ export function Services() {
           {services.map((s, i) => (
             <div
               key={s.key}
-              className="relative rounded-xl border border-border bg-surface p-7 hover:border-primary/40 transition-colors duration-200"
+              className="relative rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/40 transition-colors duration-200"
               style={{ animation: `var(--animate-fade-up)`, animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
+              <div className="h-40 w-full bg-surface-elevated overflow-hidden">
+                <img
+                  src={s.image}
+                  alt=""
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-7">
               <div className="flex items-start justify-between mb-5">
                 <div className="w-11 h-11 rounded-md bg-surface-elevated border border-border text-primary flex items-center justify-center">
                   {s.icon}
@@ -75,6 +88,7 @@ export function Services() {
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
           ))}
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useT, type Lang } from "@/lib/i18n";
 import enFlag from "@/assets/flags/en.svg";
 import ruFlag from "@/assets/flags/ru.svg";
+import logo from "@/assets/logo/logo.png";
 
 function LanguageSwitcher() {
   const { lang, setLang } = useT();
@@ -45,9 +46,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6">
         <nav className="glass rounded-xl flex items-center justify-between gap-3 px-3 sm:px-5 py-2.5 sm:py-3">
           <a href="#" className="flex items-center gap-2 group min-w-0">
-            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center font-bold text-primary-foreground flex-shrink-0">
-              V
-            </div>
+            <img src={logo} alt="VoxLocalize" className="h-8 w-8 rounded-lg object-cover flex-shrink-0" />
             <span className="font-semibold text-base sm:text-lg tracking-tight truncate">VoxLocalize</span>
           </a>
 
