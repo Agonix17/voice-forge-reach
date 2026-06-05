@@ -15,7 +15,7 @@ function LanguageSwitcher() {
       title={next === "ru" ? "Switch to Russian" : "Switch to English"}
       className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-[11px] font-semibold text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
     >
-      <img src={flagSrc[next]} alt={labels[next]} className="h-4 w-auto" />
+      <img src={flagSrc[next]} alt={labels[next]} className="w-6 h-4 object-contain" />
       <span className="uppercase tracking-wider">{labels[next]}</span>
     </button>
   );
