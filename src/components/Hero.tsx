@@ -198,6 +198,7 @@ export function Hero() {
                   muted
                   playsInline
                   loop
+                  preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover cursor-pointer"
                   onClick={togglePlay}
                 />
