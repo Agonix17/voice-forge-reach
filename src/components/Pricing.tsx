@@ -21,7 +21,9 @@ const FEATURES: { key: string; gift: boolean }[] = [
 
 export function Pricing() {
   const { t } = useT();
+  const { setSelectedPackage } = usePackageStore();
   const [selected, setSelected] = useState<Record<string, boolean>>({});
+
   const total = useMemo(
     () => BASE_PRICE + UPSELLS.reduce((acc, u) => acc + (selected[u.id] ? u.price : 0), 0),
     [selected],
