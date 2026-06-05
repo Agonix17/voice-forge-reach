@@ -53,6 +53,7 @@ export function Hero() {
     const video = videoRef.current;
     const audio = audioRef.current;
     if (!video || !audio) return;
+    audio.volume = 0.8;
 
     const onPlay = () => { audio.play().catch(() => {}); setPlaying(true); };
     const onPause = () => { audio.pause(); setPlaying(false); };
