@@ -167,6 +167,7 @@ export function Hero() {
           </div>
 
           <div className="relative" style={{ animation: "var(--animate-scale-in)" }}>
+            <div className="mb-2 text-center text-xs text-muted-foreground">{t("hero.playerHint")}</div>
             <div className={`relative rounded-xl overflow-hidden bg-surface ring-1 transition-all duration-500 ${s.ringClass}`}>
               <div className="aspect-video relative bg-surface-elevated flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 grid-pattern opacity-30" />
