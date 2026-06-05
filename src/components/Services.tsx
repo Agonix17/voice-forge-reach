@@ -30,10 +30,10 @@ const ICONS = {
 export function Services() {
   const { t } = useT();
   const services = [
-    { key: "s1", name: "Vox-Voice", tag: "Core", icon: ICONS.voice },
-    { key: "s2", name: "Visual Localize", tag: "Visual", icon: ICONS.thumb },
-    { key: "s3", name: "Meta-Data SEO", tag: "Growth", icon: ICONS.seo },
-    { key: "s4", name: "Smart Captions", tag: "Engagement", icon: ICONS.caption },
+    { key: "s1", name: "Vox-Voice", tag: "Core", icon: ICONS.voice, image: voiceCloningImg },
+    { key: "s2", name: "Visual Localize", tag: "Visual", icon: ICONS.thumb, image: syncLocalizationImg },
+    { key: "s3", name: "Meta-Data SEO", tag: "Growth", icon: ICONS.seo, image: targetedTagsImg },
+    { key: "s4", name: "Smart Captions", tag: "Engagement", icon: ICONS.caption, image: dynamicSubtitlesImg },
   ];
 
   return (
