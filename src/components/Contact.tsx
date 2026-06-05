@@ -10,7 +10,7 @@ const PUBLIC_KEY = "2E_DVenRQODCOAZOp";
 
 export function Contact() {
   const { t } = useT();
-  const { selectedPackage, selectedAddons, setSelectedPackage, clearAll } = usePackageStore();
+  const { selectedPackage, selectedAddons, clearAll } = usePackageStore();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
