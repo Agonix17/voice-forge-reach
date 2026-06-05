@@ -66,6 +66,21 @@ import prestonplayz3 from "@/assets/previews/prestonplayz-3.jpg";
 import ssundee1 from "@/assets/previews/ssundee-1.jpg";
 import ssundee2 from "@/assets/previews/ssundee-2.jpg";
 import ssundee3 from "@/assets/previews/ssundee-3.jpg";
+import unsortedpile1 from "@/assets/previews/unsortedpile-1.jpg";
+import unsortedpile2 from "@/assets/previews/unsortedpile-2.jpg";
+import unsortedpile3 from "@/assets/previews/unsortedpile-3.jpg";
+import smallishbeans1 from "@/assets/previews/smallishbeans-1.jpg";
+import smallishbeans2 from "@/assets/previews/smallishbeans-2.jpg";
+import smallishbeans3 from "@/assets/previews/smallishbeans-3.jpg";
+import lizzie1 from "@/assets/previews/lizzie-1.jpg";
+import lizzie2 from "@/assets/previews/lizzie-2.jpg";
+import lizzie3 from "@/assets/previews/lizzie-3.jpg";
+import wattles1 from "@/assets/previews/wattles-1.jpg";
+import wattles2 from "@/assets/previews/wattles-2.jpg";
+import wattles3 from "@/assets/previews/wattles-3.jpg";
+import bikinibodhi1 from "@/assets/previews/bikinibodhi-1.jpg";
+import bikinibodhi2 from "@/assets/previews/bikinibodhi-2.jpg";
+import bikinibodhi3 from "@/assets/previews/bikinibodhi-3.jpg";
 
 type Preview = { thumbnail: string; views: string };
 type Giant = {
