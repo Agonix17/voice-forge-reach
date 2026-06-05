@@ -198,6 +198,14 @@ const ROW2: Giant[] = [
     ],
   },
   {
+    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: bikinibodhi1, views: "12M" },
+      { thumbnail: bikinibodhi2, views: "8.7M" },
+      { thumbnail: bikinibodhi3, views: "6.3M" },
+    ],
+  },
+  {
     name: "Aphmau", handle: "@Aphmau", logo: aphmauAvatar, uplift: "+31%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: aphmau1, views: "72M" },
@@ -206,6 +214,7 @@ const ROW2: Giant[] = [
     ],
   },
 ];
+
 
 const ROW3: Giant[] = [
   {
