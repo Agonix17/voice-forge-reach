@@ -133,15 +133,35 @@ export function Contact() {
                   className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors resize-none disabled:opacity-60"
                 />
               </div>
-              <button
-                type="submit"
-                disabled={loading || submitted}
-                className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-100 disabled:cursor-default"
-              >
-                {submitted ? "✓ Заявка отправлена" : loading ? "..." : t("contact.submit")}
-              </button>
-              {submitted && (
-                <p className="text-sm text-center text-primary">{t("contact.received.sub")}</p>
+              {submitted ? (
+                <div className="space-y-4 text-center">
+                  <div className="text-primary font-semibold flex items-center justify-center gap-2">
+                    <Check className="w-5 h-5" /> Заявка отправлена
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Мы свяжемся с вами в течение 24 часов
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm({ youtubeUrl: "", email: "", message: "" });
+                      clearAll();
+                      try { sessionStorage.removeItem("selected_package"); } catch {}
+                    }}
+                    className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-surface-elevated transition-colors"
+                  >
+                    Сбросить и отправить новую заявку
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-60"
+                >
+                  {loading ? "..." : t("contact.submit")}
+                </button>
               )}
               {error && (
                 <p className="text-sm text-center text-destructive">Ошибка, попробуйте снова</p>
