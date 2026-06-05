@@ -51,7 +51,7 @@ export function Footer() {
           <div>
             <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">{t("footer.connect")}</div>
             <ul className="space-y-2 text-sm">
-              {SOCIAL_LINKS.map(({ label, url, icon: Icon }) => (
+              {SOCIAL_LINKS.map(({ label, url, icon }) => (
                 <li key={label}>
                   <a
                     href={url}
@@ -59,11 +59,23 @@ export function Footer() {
                     rel={url.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                   >
-                    <Icon className="w-4 h-4" />
+                    <img
+                      src={icon}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 object-contain"
+                      onError={(e) => {
+                        const t = e.currentTarget as HTMLImageElement;
+                        t.style.background = "hsl(var(--muted))";
+                        t.removeAttribute("src");
+                      }}
+                    />
                     {label}
                   </a>
                 </li>
               ))}
+
             </ul>
           </div>
         </div>
