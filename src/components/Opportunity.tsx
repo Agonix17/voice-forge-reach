@@ -81,6 +81,11 @@ import wattles3 from "@/assets/previews/wattles-3.jpg";
 import bikinibodhi1 from "@/assets/previews/bikinibodhi-1.jpg";
 import bikinibodhi2 from "@/assets/previews/bikinibodhi-2.jpg";
 import bikinibodhi3 from "@/assets/previews/bikinibodhi-3.jpg";
+import joelAvatar from "@/assets/avatars/joel.jpg";
+import joel1 from "@/assets/previews/joel-1.jpg";
+import joel2 from "@/assets/previews/joel-2.jpg";
+import joel3 from "@/assets/previews/joel-3.jpg";
+
 
 type Preview = { thumbnail: string; views: string };
 type Giant = {
