@@ -98,15 +98,28 @@ export function Contact() {
               {form.package && (
                 <div>
                   <label className="block text-sm font-medium mb-2">{t("contact.package") || "Package"}</label>
+                  <div className="mb-2 inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary">
+                    <span>✓ Selected: {form.package}</span>
+                    <button
+                      type="button"
+                      disabled={submitted}
+                      onClick={() => { setForm((f) => ({ ...f, package: "" })); setSelectedPackage(""); try { sessionStorage.removeItem("selected_package"); } catch {} }}
+                      className="text-primary/70 hover:text-primary disabled:opacity-50"
+                      aria-label="Clear selected package"
+                    >
+                      ✕
+                    </button>
+                  </div>
                   <input
                     type="text"
                     disabled={submitted}
                     value={form.package}
-                    onChange={(e) => setForm({ ...form, package: e.target.value })}
+                    onChange={(e) => { setForm({ ...form, package: e.target.value }); setSelectedPackage(e.target.value); }}
                     className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
                   />
                 </div>
               )}
+
               <div>
                 <label className="block text-sm font-medium mb-2">{t("contact.message")}</label>
                 <textarea
