@@ -20,6 +20,7 @@ const en: Dict = {
   "hero.title2b": "New Viewers.",
   "hero.title3": "$75.",
   "hero.subtitle": "Experience the difference between a bot and a localized masterpiece. Toggle the player and hear it for yourself.",
+  "hero.playerHint": "Hear the difference — switch the track",
   "hero.ctaPrimary": "Get My Free 60s Demo →",
   "hero.ctaSecondary": "See the $75 Pack",
   "hero.stat1": "RU Speakers",
