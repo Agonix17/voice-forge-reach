@@ -155,7 +155,7 @@ export function Pricing() {
               </div>
               <a
                 href="#contact"
-                onClick={() => { const addons = UPSELLS.filter(u => selected[u.id]).map(u => t(u.textKey)).join(", "); const pkg = `${t("price.packName")} ($${total})${addons ? " + " + addons : ""}`; setSelectedPackage(pkg); try { sessionStorage.setItem("selected_package", pkg); } catch {} }}
+                onClick={() => { setSelectedPackage(`${t("price.packName")} ($${total})`); }}
                 className="block text-center rounded-md border border-primary/40 bg-primary/10 text-primary px-5 py-3 min-h-[44px] text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 {t("price.lockIn")}
