@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Check, Gift, Plus, Sparkles, Flame } from "lucide-react";
 import { useT } from "@/lib/i18n";
+import { usePackageStore } from "@/lib/selectedPackage";
+
 
 const BASE_PRICE = 75;
 const UPSELLS = [
