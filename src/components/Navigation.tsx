@@ -20,7 +20,8 @@ function LanguageSwitcher() {
         alt={labels[next]}
         width={20}
         height={14}
-        className="w-5 h-[14px] rounded-md object-cover border border-border/60"
+        className="w-5 h-[14px] rounded-none object-cover border border-border/60"
+        style={{ borderRadius: 0 }}
       />
       <span className="uppercase tracking-wider">{labels[next]}</span>
     </button>

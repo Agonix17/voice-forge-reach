@@ -17,6 +17,11 @@ import captainsparklezAvatar from "@/assets/avatars/captainsparklez.jpg";
 import aphmauAvatar from "@/assets/avatars/aphmau.jpg";
 import prestonplayzAvatar from "@/assets/avatars/prestonplayz.jpg";
 import ssundeeAvatar from "@/assets/avatars/ssundee.jpg";
+import unsortedpileAvatar from "@/assets/avatars/unsortedpile.jpg";
+import smallishbeansAvatar from "@/assets/avatars/smallishbeans.jpg";
+import lizzieAvatar from "@/assets/avatars/lizzie.jpg";
+import wattlesAvatar from "@/assets/avatars/wattles.jpg";
+import bikinibodhiAvatar from "@/assets/avatars/bikinibodhi.jpg";
 
 // Previews
 import mrbeast1 from "@/assets/previews/mrbeast-1.jpg";
@@ -61,6 +66,21 @@ import prestonplayz3 from "@/assets/previews/prestonplayz-3.jpg";
 import ssundee1 from "@/assets/previews/ssundee-1.jpg";
 import ssundee2 from "@/assets/previews/ssundee-2.jpg";
 import ssundee3 from "@/assets/previews/ssundee-3.jpg";
+import unsortedpile1 from "@/assets/previews/unsortedpile-1.jpg";
+import unsortedpile2 from "@/assets/previews/unsortedpile-2.jpg";
+import unsortedpile3 from "@/assets/previews/unsortedpile-3.jpg";
+import smallishbeans1 from "@/assets/previews/smallishbeans-1.jpg";
+import smallishbeans2 from "@/assets/previews/smallishbeans-2.jpg";
+import smallishbeans3 from "@/assets/previews/smallishbeans-3.jpg";
+import lizzie1 from "@/assets/previews/lizzie-1.jpg";
+import lizzie2 from "@/assets/previews/lizzie-2.jpg";
+import lizzie3 from "@/assets/previews/lizzie-3.jpg";
+import wattles1 from "@/assets/previews/wattles-1.jpg";
+import wattles2 from "@/assets/previews/wattles-2.jpg";
+import wattles3 from "@/assets/previews/wattles-3.jpg";
+import bikinibodhi1 from "@/assets/previews/bikinibodhi-1.jpg";
+import bikinibodhi2 from "@/assets/previews/bikinibodhi-2.jpg";
+import bikinibodhi3 from "@/assets/previews/bikinibodhi-3.jpg";
 
 type Preview = { thumbnail: string; views: string };
 type Giant = {
@@ -182,6 +202,49 @@ const ROW2: Giant[] = [
   },
 ];
 
+const ROW3: Giant[] = [
+  {
+    name: "Unsorted Pile", handle: "@UnsortedPile", logo: unsortedpileAvatar, uplift: "+26%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: unsortedpile1, views: "8.2M" },
+      { thumbnail: unsortedpile2, views: "6.1M" },
+      { thumbnail: unsortedpile3, views: "4.4M" },
+    ],
+  },
+  {
+    name: "SmallishBeans", handle: "@SmallishBeans", logo: smallishbeansAvatar, uplift: "+32%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: smallishbeans1, views: "14M" },
+      { thumbnail: smallishbeans2, views: "11M" },
+      { thumbnail: smallishbeans3, views: "9.3M" },
+    ],
+  },
+  {
+    name: "Lizzie (LDShadowLady)", handle: "@LDShadowLady", logo: lizzieAvatar, uplift: "+29%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: lizzie1, views: "21M" },
+      { thumbnail: lizzie2, views: "17M" },
+      { thumbnail: lizzie3, views: "13M" },
+    ],
+  },
+  {
+    name: "Wattles", handle: "@Wattles", logo: wattlesAvatar, uplift: "+31%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: wattles1, views: "9.8M" },
+      { thumbnail: wattles2, views: "7.6M" },
+      { thumbnail: wattles3, views: "5.9M" },
+    ],
+  },
+  {
+    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: bikinibodhi1, views: "12M" },
+      { thumbnail: bikinibodhi2, views: "8.7M" },
+      { thumbnail: bikinibodhi3, views: "6.3M" },
+    ],
+  },
+];
+
 function GiantCard({ g, i }: { g: Giant; i: number }) {
   return (
     <article
@@ -286,6 +349,11 @@ export function Opportunity() {
               {i === 5 && <CtaCard />}
               <GiantCard g={g} i={i} />
             </Fragment>
+          ))}
+        </div>
+        <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
+          {ROW3.map((g, i) => (
+            <GiantCard key={`r3-${i}`} g={g} i={i} />
           ))}
         </div>
       </div>
