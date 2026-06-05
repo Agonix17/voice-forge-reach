@@ -156,17 +156,17 @@ export function Hero() {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-4 sm:gap-8 pt-4">
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">40M+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">{stat1}M+</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat1")}</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">+30%</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">+{stat2}%</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat2")}</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">72h</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">{stat3}h</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat3")}</div>
               </div>
             </div>
