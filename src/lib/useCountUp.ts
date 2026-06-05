@@ -24,8 +24,8 @@ export function useCountUp(target: number, opts: { duration?: number; start?: bo
   return value;
 }
 
-export function useInViewOnce<T extends Element>(): [React.RefObject<T>, boolean] {
-  const ref = useRef<T>(null);
+export function useInViewOnce<T extends Element>(): [React.RefObject<T | null>, boolean] {
+  const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
