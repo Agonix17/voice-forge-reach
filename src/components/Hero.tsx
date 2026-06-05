@@ -197,7 +197,6 @@ export function Hero() {
                   src="/video/demo.mp4"
                   muted
                   playsInline
-                  loop
                   preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover cursor-pointer"
                   onClick={togglePlay}
