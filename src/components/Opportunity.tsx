@@ -359,16 +359,32 @@ export function Opportunity() {
           ))}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
-          {ROW2.map((g, i) => (
-            <GiantCard key={`r2-${i}`} g={g} i={i} />
-          ))}
+          {ROW2.map((g, i) => {
+            // Desktop order: Techno(0), Stampy(1), Grian(2), CTA(3), Mumbo(4), Bikini(5), Aphmau(6)
+            // Mobile order: Techno(0), CTA(1), Grian(2), Stampy(3), Mumbo(4), Bikini(5), Aphmau(6)
+            // ROW2 has 6 giants; CTA inserted at desktop index 3.
+            const desktopIdx = i < 3 ? i : i + 1; // 0,1,2,4,5,6
+            const mobileIdx = i === 1 ? 3 : desktopIdx; // swap Stampy with CTA on mobile
+            return (
+              <div
+                key={`r2-${i}`}
+                className="flex-shrink-0"
+                style={{ order: mobileIdx }}
+              >
+                <div className="md:contents" style={{ display: undefined }} />
+                <div className="flex-shrink-0" />
+                <GiantCard g={g} i={i} />
+              </div>
+            );
+          })}
+          {/* CTA card sits at desktop position 3, mobile position 1 */}
+          <div className="flex-shrink-0 order-1 md:order-none" style={{}}>
+            <CtaCard />
+          </div>
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
           {ROW3.map((g, i) => (
-            <Fragment key={`r3-${i}`}>
-              {i === 4 && <CtaCard />}
-              <GiantCard g={g} i={i} />
-            </Fragment>
+            <GiantCard key={`r3-${i}`} g={g} i={i} />
           ))}
         </div>
 
