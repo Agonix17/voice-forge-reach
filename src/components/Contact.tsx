@@ -93,35 +93,26 @@ export function Contact() {
 
               <div>
                 {selectedPackage ? (
-                  <div className="rounded-xl border border-primary/40 bg-primary/10 p-4">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                        Selected Package
-                      </div>
-                      <a href="#pricing" className="text-xs text-primary underline">Change plan →</a>
+                  <div className="rounded-xl border border-primary/40 bg-primary/10 p-4 space-y-3">
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                      Selected Package
                     </div>
                     <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary" />
-                      <span className="font-semibold text-primary text-sm">{selectedPackage}</span>
+                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="font-semibold text-primary">{selectedPackage}</span>
                     </div>
                     {selectedAddons.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex flex-wrap gap-2 pt-1 border-t border-primary/20">
                         {selectedAddons.map((addon) => (
                           <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/30 px-2 py-1 text-xs text-primary font-medium">
-                            <Check className="w-3 h-3" /> {addon}
+                            + {addon}
                           </span>
                         ))}
                       </div>
                     )}
-                    {!submitted && (
-                      <button
-                        type="button"
-                        onClick={() => { clearAll(); try { sessionStorage.removeItem("selected_package"); } catch {} }}
-                        className="mt-3 text-xs text-muted-foreground hover:text-foreground underline"
-                      >
-                        Clear selection
-                      </button>
-                    )}
+                    <a href="#pricing" className="text-xs text-muted-foreground underline block">
+                      Change plan →
+                    </a>
                   </div>
                 ) : (
                   <div className="rounded-xl border border-border bg-surface p-4 text-muted-foreground text-sm flex items-center justify-between gap-3">
