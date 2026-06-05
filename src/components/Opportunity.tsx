@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { TrendingUp } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
@@ -182,14 +181,6 @@ const ROW2: Giant[] = [
     ],
   },
   {
-    name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%", globalWatchTime: "Global Watch Time",
-    previews: [
-      { thumbnail: captainsparklez1, views: "48M" },
-      { thumbnail: captainsparklez2, views: "36M" },
-      { thumbnail: captainsparklez3, views: "29M" },
-    ],
-  },
-  {
     name: "Mumbo Jumbo", handle: "@ThatMumboJumbo", logo: mumboAvatar, uplift: "+24%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: mumbo1, views: "22M" },
@@ -247,6 +238,14 @@ const ROW3: Giant[] = [
       { thumbnail: wattles1, views: "9.8M" },
       { thumbnail: wattles2, views: "7.6M" },
       { thumbnail: wattles3, views: "5.9M" },
+    ],
+  },
+  {
+    name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: captainsparklez1, views: "48M" },
+      { thumbnail: captainsparklez2, views: "36M" },
+      { thumbnail: captainsparklez3, views: "29M" },
     ],
   },
   {
@@ -359,16 +358,38 @@ export function Opportunity() {
           ))}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
-          {ROW2.map((g, i) => (
-            <GiantCard key={`r2-${i}`} g={g} i={i} />
-          ))}
+          {/*
+            Desktop final order: Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau
+            Mobile final order:  Techno, CTA,    Grian, Stampy, Mumbo, Bikini, Aphmau
+            (CTA and Stampy swap between breakpoints — same component instance)
+          */}
+          {(() => {
+            // mobile order, desktop order
+            const orderClasses = [
+              "order-[0] md:order-[0]", // Techno
+              "order-[3] md:order-[1]", // Stampy
+              "order-[2] md:order-[2]", // Grian
+              "order-[4] md:order-[4]", // Mumbo
+              "order-[5] md:order-[5]", // Bikini
+              "order-[6] md:order-[6]", // Aphmau
+            ];
+            return (
+              <>
+                {ROW2.map((g, i) => (
+                  <div key={`r2-${i}`} className={`flex-shrink-0 ${orderClasses[i]}`}>
+                    <GiantCard g={g} i={i} />
+                  </div>
+                ))}
+                <div className="flex-shrink-0 order-[1] md:order-[3]">
+                  <CtaCard />
+                </div>
+              </>
+            );
+          })()}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
           {ROW3.map((g, i) => (
-            <Fragment key={`r3-${i}`}>
-              {i === 4 && <CtaCard />}
-              <GiantCard g={g} i={i} />
-            </Fragment>
+            <GiantCard key={`r3-${i}`} g={g} i={i} />
           ))}
         </div>
 

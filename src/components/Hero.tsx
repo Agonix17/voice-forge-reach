@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Check, X, Mic, Play, Pause } from "lucide-react";
 import { useT } from "@/lib/i18n";
+import { useCountUp } from "@/lib/useCountUp";
 
 type Mode = "original" | "auto" | "vox";
 
@@ -40,6 +41,9 @@ const fmt = (s: number) => {
 
 export function Hero() {
   const { t } = useT();
+  const stat1 = useCountUp(40);
+  const stat2 = useCountUp(30);
+  const stat3 = useCountUp(72);
   const [mode, setMode] = useState<Mode>("original");
   const s = MODE_STYLES[mode];
 
@@ -103,8 +107,23 @@ export function Hero() {
 
   const onScrub = (e: React.ChangeEvent<HTMLInputElement>) => {
     const t = Number(e.target.value);
-    if (videoRef.current) videoRef.current.currentTime = t;
-    if (audioRef.current) audioRef.current.currentTime = t;
+    const video = videoRef.current;
+    const audio = audioRef.current;
+    if (!video || !audio) return;
+
+    if (video.readyState < 2) {
+      const onReady = () => {
+        video.currentTime = t;
+        audio.currentTime = t;
+        setCurrentTime(t);
+      };
+      video.addEventListener("canplay", onReady, { once: true });
+      video.load();
+      return;
+    }
+
+    video.currentTime = t;
+    audio.currentTime = t;
     setCurrentTime(t);
   };
 
@@ -152,17 +171,17 @@ export function Hero() {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-4 sm:gap-8 pt-4">
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">40M+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">{stat1}M+</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat1")}</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">+30%</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">+{stat2}%</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat2")}</div>
               </div>
               <div className="w-px h-10 sm:h-12 bg-border" />
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-primary">72h</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary tabular-nums">{stat3}h</div>
                 <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">{t("hero.stat3")}</div>
               </div>
             </div>
@@ -179,6 +198,7 @@ export function Hero() {
                   muted
                   playsInline
                   loop
+                  preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover cursor-pointer"
                   onClick={togglePlay}
                 />
