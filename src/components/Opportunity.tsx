@@ -202,6 +202,49 @@ const ROW2: Giant[] = [
   },
 ];
 
+const ROW3: Giant[] = [
+  {
+    name: "Unsorted Pile", handle: "@UnsortedPile", logo: unsortedpileAvatar, uplift: "+26%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: unsortedpile1, views: "8.2M" },
+      { thumbnail: unsortedpile2, views: "6.1M" },
+      { thumbnail: unsortedpile3, views: "4.4M" },
+    ],
+  },
+  {
+    name: "SmallishBeans", handle: "@SmallishBeans", logo: smallishbeansAvatar, uplift: "+32%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: smallishbeans1, views: "14M" },
+      { thumbnail: smallishbeans2, views: "11M" },
+      { thumbnail: smallishbeans3, views: "9.3M" },
+    ],
+  },
+  {
+    name: "Lizzie (LDShadowLady)", handle: "@LDShadowLady", logo: lizzieAvatar, uplift: "+29%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: lizzie1, views: "21M" },
+      { thumbnail: lizzie2, views: "17M" },
+      { thumbnail: lizzie3, views: "13M" },
+    ],
+  },
+  {
+    name: "Wattles", handle: "@Wattles", logo: wattlesAvatar, uplift: "+31%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: wattles1, views: "9.8M" },
+      { thumbnail: wattles2, views: "7.6M" },
+      { thumbnail: wattles3, views: "5.9M" },
+    ],
+  },
+  {
+    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: bikinibodhi1, views: "12M" },
+      { thumbnail: bikinibodhi2, views: "8.7M" },
+      { thumbnail: bikinibodhi3, views: "6.3M" },
+    ],
+  },
+];
+
 function GiantCard({ g, i }: { g: Giant; i: number }) {
   return (
     <article
