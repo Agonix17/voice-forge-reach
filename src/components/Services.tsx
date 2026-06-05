@@ -1,4 +1,8 @@
 import { useT } from "@/lib/i18n";
+import voiceCloningImg from "@/assets/features/voice-cloning.jpg";
+import syncLocalizationImg from "@/assets/features/sync-localization.jpg";
+import targetedTagsImg from "@/assets/features/targeted-tags.jpg";
+import dynamicSubtitlesImg from "@/assets/features/dynamic-subtitles.jpg";
 
 const ICONS = {
   voice: (
