@@ -310,7 +310,12 @@ const ru: Dict = {
   "price.u2": "Доп. обложка для A/B-теста",
   "price.u3": "3 Shorts из основного видео",
   "price.total": "Итого",
-  "price.lockIn": "Зафиксировать сборку →",
+  "price.lockIn": "Зафиксировать цену →",
+  "price.mostPopular": "Хит",
+  "price.packPrice": "$75",
+  "price.u1Price": "+$10",
+  "price.u2Price": "+$5",
+  "price.u3Price": "+$15",
 
   "why.eyebrow": "Почему VoxLocalize",
   "why.titleA": "Мы переводим не слова.",
