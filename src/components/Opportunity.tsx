@@ -1,5 +1,4 @@
 import { TrendingUp } from "lucide-react";
-import { TrendingUp } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
 // Avatars
