@@ -95,9 +95,9 @@ export function Contact() {
                       <span className="font-semibold text-primary">{selectedPackage}</span>
                     </div>
                     {selectedAddons.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-1 border-t border-primary/20">
+                      <div className="flex flex-wrap gap-2 pt-2 border-t border-primary/20">
                         {selectedAddons.map((addon) => (
-                          <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/30 px-2 py-1 text-xs text-primary font-medium">
+                          <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-surface-elevated border border-border px-2 py-1 text-xs text-muted-foreground font-medium">
                             + {addon}
                           </span>
                         ))}
