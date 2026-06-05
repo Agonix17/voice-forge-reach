@@ -1,15 +1,20 @@
-import { Twitter, Linkedin, Mail, Youtube, MessageCircle } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import logo from "@/assets/logo/logo.png";
+import youtubeIcon from "@/assets/socials/youtube.svg";
+import discordIcon from "@/assets/socials/discord.svg";
+import twitterIcon from "@/assets/socials/twitter.svg";
+import linkedinIcon from "@/assets/socials/linkedin.svg";
+import emailIcon from "@/assets/socials/email.svg";
 
 // ── Edit social links here ──────────────────────────────
 const SOCIAL_LINKS = [
-  { label: "X / Twitter", url: "https://twitter.com/voxlocalize", icon: Twitter },
-  { label: "LinkedIn", url: "https://linkedin.com/company/voxlocalize", icon: Linkedin },
-  { label: "YouTube", url: "https://youtube.com/@voxlocalize", icon: Youtube },
-  { label: "Discord", url: "https://discord.gg/voxlocalize", icon: MessageCircle },
-  { label: "Email", url: "mailto:hello@voxlocalize.com", icon: Mail },
+  { label: "YouTube", url: "https://youtube.com/@voxlocalize", icon: youtubeIcon },
+  { label: "Discord", url: "https://discord.gg/voxlocalize", icon: discordIcon },
+  { label: "X / Twitter", url: "https://twitter.com/voxlocalize", icon: twitterIcon },
+  { label: "LinkedIn", url: "https://linkedin.com/company/voxlocalize", icon: linkedinIcon },
+  { label: "Email", url: "mailto:hello@voxlocalize.com", icon: emailIcon },
 ];
+
 
 // ── Edit product links here ─────────────────────────────
 const PRODUCT_LINKS = [
