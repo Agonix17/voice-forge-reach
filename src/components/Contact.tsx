@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Check } from "lucide-react";
 import { useT } from "@/lib/i18n";
