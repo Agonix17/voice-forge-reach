@@ -204,7 +204,7 @@ export function Hero() {
                   {t(`mode.${mode}.badge`)}
                 </div>
 
-                <div className="absolute top-4 right-4 hidden sm:block z-20">
+                <div className="absolute top-4 right-4 hidden md:block z-20">
                   <span key={`v-${mode}`} className={`text-[10px] font-bold uppercase tracking-wider ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>
                     {t(`mode.${mode}.vibe`)}
                   </span>
