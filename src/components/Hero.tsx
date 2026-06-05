@@ -88,6 +88,7 @@ export function Hero() {
     requestAnimationFrame(() => {
       const a = audioRef.current;
       if (!a) return;
+      a.volume = 0.8;
       a.currentTime = time;
       if (wasPlaying) a.play().catch(() => {});
     });
