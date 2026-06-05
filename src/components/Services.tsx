@@ -53,9 +53,18 @@ export function Services() {
           {services.map((s, i) => (
             <div
               key={s.key}
-              className="relative rounded-xl border border-border bg-surface p-7 hover:border-primary/40 transition-colors duration-200"
+              className="relative rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/40 transition-colors duration-200"
               style={{ animation: `var(--animate-fade-up)`, animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
+              <div className="h-40 w-full bg-surface-elevated overflow-hidden">
+                <img
+                  src={s.image}
+                  alt=""
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-7">
               <div className="flex items-start justify-between mb-5">
                 <div className="w-11 h-11 rounded-md bg-surface-elevated border border-border text-primary flex items-center justify-center">
                   {s.icon}
