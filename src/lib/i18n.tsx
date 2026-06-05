@@ -181,6 +181,13 @@ const en: Dict = {
   "contact.messagePh": "Which video do you want localized first? Any goals or target regions?",
   "contact.submit": "Get My Free 60s Demo →",
   "contact.fineprint": "Free analysis. No credit card. No spam.",
+  "form.selectedPackage": "Selected Package",
+  "form.changePlan": "Change plan →",
+  "form.noPackage": "No package selected — choose a plan above",
+  "form.success": "Application sent",
+  "form.successSub": "We will contact you within 24 hours",
+  "form.reset": "Reset and send new application",
+  "form.error": "Error, please try again",
 
   // Footer
   "footer.tagline": "Premium AI video localization built for Minecraft creators. Made by gamers, for gamers.",
@@ -357,6 +364,13 @@ const ru: Dict = {
   "contact.messagePh": "Какое видео локализовать первым? Перейдем на постоянное сотрудничество?",
   "contact.submit": "Бесплатное демо 60 сек →",
   "contact.fineprint": "Бесплатный анализ. Без рассылок. Без спама.",
+  "form.selectedPackage": "Выбранный пакет",
+  "form.changePlan": "Изменить план →",
+  "form.noPackage": "Пакет не выбран — выберите план выше",
+  "form.success": "Заявка отправлена",
+  "form.successSub": "Мы свяжемся с вами в течение 24 часов",
+  "form.reset": "Сбросить и отправить новую заявку",
+  "form.error": "Ошибка, попробуйте снова",
 
   "footer.tagline": "Премиум AI-локализация видео для Minecraft-блогеров. Сделано геймерами для геймеров.",
   "footer.product": "Продукт",
