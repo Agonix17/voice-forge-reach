@@ -60,74 +60,69 @@ export function Contact() {
           </div>
 
           <div className="rounded-xl border border-border bg-surface p-8 md:p-10">
-            {submitted ? (
-              <div className="text-center py-12">
-                <div className="w-14 h-14 mx-auto rounded-full bg-primary/15 flex items-center justify-center mb-4">
-                  <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold mb-2">{t("contact.received")}</h3>
-                <p className="text-muted-foreground">{t("contact.received.sub")}</p>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium mb-2">{t("contact.channel")}</label>
+                <input
+                  type="url"
+                  required
+                  disabled={submitted}
+                  value={form.youtubeUrl}
+                  onChange={(e) => setForm({ ...form, youtubeUrl: e.target.value })}
+                  placeholder={t("contact.channelPh")}
+                  className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
+                />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium mb-2">{t("contact.email")}</label>
+                <input
+                  type="email"
+                  required
+                  disabled={submitted}
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder={t("contact.emailPh")}
+                  className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
+                />
+              </div>
+              {form.package && (
                 <div>
-                  <label className="block text-sm font-medium mb-2">{t("contact.channel")}</label>
+                  <label className="block text-sm font-medium mb-2">{t("contact.package") || "Package"}</label>
                   <input
-                    type="url"
-                    required
-                    value={form.youtubeUrl}
-                    onChange={(e) => setForm({ ...form, youtubeUrl: e.target.value })}
-                    placeholder={t("contact.channelPh")}
-                    className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
+                    type="text"
+                    disabled={submitted}
+                    value={form.package}
+                    onChange={(e) => setForm({ ...form, package: e.target.value })}
+                    className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors disabled:opacity-60"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">{t("contact.email")}</label>
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder={t("contact.emailPh")}
-                    className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
-                  />
-                </div>
-                {form.package && (
-                  <div>
-                    <label className="block text-sm font-medium mb-2">{t("contact.package") || "Package"}</label>
-                    <input
-                      type="text"
-                      value={form.package}
-                      onChange={(e) => setForm({ ...form, package: e.target.value })}
-                      className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
-                    />
-                  </div>
-                )}
-                <div>
-                  <label className="block text-sm font-medium mb-2">{t("contact.message")}</label>
-                  <textarea
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder={t("contact.messagePh")}
-                    className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {loading ? "..." : t("contact.submit")}
-                </button>
-                {error && (
-                  <p className="text-sm text-center text-destructive">Ошибка, попробуйте снова</p>
-                )}
-                <p className="text-xs text-center text-muted-foreground">{t("contact.fineprint")}</p>
-              </form>
-            )}
+              )}
+              <div>
+                <label className="block text-sm font-medium mb-2">{t("contact.message")}</label>
+                <textarea
+                  rows={4}
+                  disabled={submitted}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  placeholder={t("contact.messagePh")}
+                  className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors resize-none disabled:opacity-60"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading || submitted}
+                className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-100 disabled:cursor-default"
+              >
+                {submitted ? "✓ Заявка отправлена" : loading ? "..." : t("contact.submit")}
+              </button>
+              {submitted && (
+                <p className="text-sm text-center text-primary">{t("contact.received.sub")}</p>
+              )}
+              {error && (
+                <p className="text-sm text-center text-destructive">Ошибка, попробуйте снова</p>
+              )}
+              <p className="text-xs text-center text-muted-foreground">{t("contact.fineprint")}</p>
+            </form>
           </div>
         </div>
       </div>
