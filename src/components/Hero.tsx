@@ -204,7 +204,7 @@ export function Hero() {
                   {t(`mode.${mode}.badge`)}
                 </div>
 
-                <div className="absolute top-4 right-4 hidden sm:block z-20">
+                <div className="absolute top-4 right-4 hidden md:block z-20">
                   <span key={`v-${mode}`} className={`text-[10px] font-bold uppercase tracking-wider ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>
                     {t(`mode.${mode}.vibe`)}
                   </span>
@@ -236,7 +236,7 @@ export function Hero() {
                   aria-label="Seek"
                   className="flex-1 h-1 accent-primary cursor-pointer"
                 />
-                <span key={`q-${mode}`} className={`font-semibold text-right flex-shrink-0 ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>{t(`mode.${mode}.quality`)}</span>
+                <span key={`q-${mode}`} className={`font-semibold text-right flex-shrink-0 hidden md:inline ${s.qualityClass}`} style={{ animation: "var(--animate-fade-in)" }}>{t(`mode.${mode}.quality`)}</span>
               </div>
 
               <div className="grid grid-cols-3 gap-2 p-3 border-t border-border">
