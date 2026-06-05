@@ -88,6 +88,7 @@ export function Services() {
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
           ))}
         </div>
