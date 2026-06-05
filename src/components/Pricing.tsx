@@ -21,7 +21,7 @@ const FEATURES: { key: string; gift: boolean }[] = [
 
 export function Pricing() {
   const { t } = useT();
-  const { setSelectedPackage } = usePackageStore();
+  const { setSelectedPackage, toggleAddon } = usePackageStore();
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
   const total = useMemo(
