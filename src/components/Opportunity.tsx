@@ -239,7 +239,7 @@ function GiantCard({ g, i }: { g: Giant; i: number }) {
 function CtaCard() {
   const { t } = useT();
   return (
-    <article className="relative overflow-hidden flex flex-col items-center justify-center text-center w-[280px] flex-shrink-0 rounded-xl border border-dashed border-primary/40 bg-surface p-5 gradient-border">
+    <article className="relative overflow-hidden flex flex-col items-center justify-center text-center w-[350px] flex-shrink-0 rounded-xl border border-dashed border-primary/40 bg-surface p-6 gradient-border">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
