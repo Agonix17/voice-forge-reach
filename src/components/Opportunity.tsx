@@ -351,6 +351,11 @@ export function Opportunity() {
             </Fragment>
           ))}
         </div>
+        <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
+          {ROW3.map((g, i) => (
+            <GiantCard key={`r3-${i}`} g={g} i={i} />
+          ))}
+        </div>
       </div>
     </section>
   );
