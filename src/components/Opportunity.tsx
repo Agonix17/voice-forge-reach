@@ -359,28 +359,39 @@ export function Opportunity() {
           ))}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
-          {ROW2.map((g, i) => {
-            // Desktop order: Techno(0), Stampy(1), Grian(2), CTA(3), Mumbo(4), Bikini(5), Aphmau(6)
-            // Mobile order: Techno(0), CTA(1), Grian(2), Stampy(3), Mumbo(4), Bikini(5), Aphmau(6)
-            // ROW2 has 6 giants; CTA inserted at desktop index 3.
-            const desktopIdx = i < 3 ? i : i + 1; // 0,1,2,4,5,6
-            const mobileIdx = i === 1 ? 3 : desktopIdx; // swap Stampy with CTA on mobile
+          {/*
+            ROW2 source order: Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau
+            Desktop final:    Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau (CTA at pos 3, where CaptainSparklez was)
+            Mobile final:     Techno, CTA,    Grian, Stampy, Mumbo, Bikini, Aphmau (CTA at Stampy's pos)
+          */}
+          {(() => {
+            const orderMap = [
+              { mobile: 0, desktop: 0 }, // Techno
+              { mobile: 3, desktop: 1 }, // Stampy
+              { mobile: 2, desktop: 2 }, // Grian
+              { mobile: 4, desktop: 4 }, // Mumbo
+              { mobile: 5, desktop: 5 }, // Bikini
+              { mobile: 6, desktop: 6 }, // Aphmau
+            ];
             return (
-              <div
-                key={`r2-${i}`}
-                className="flex-shrink-0"
-                style={{ order: mobileIdx }}
-              >
-                <div className="md:contents" style={{ display: undefined }} />
-                <div className="flex-shrink-0" />
-                <GiantCard g={g} i={i} />
-              </div>
+              <>
+                {ROW2.map((g, i) => {
+                  const o = orderMap[i];
+                  return (
+                    <div
+                      key={`r2-${i}`}
+                      className={`flex-shrink-0 order-[${o.mobile}] md:order-[${o.desktop}]`}
+                    >
+                      <GiantCard g={g} i={i} />
+                    </div>
+                  );
+                })}
+                <div className="flex-shrink-0 order-[1] md:order-[3]">
+                  <CtaCard />
+                </div>
+              </>
             );
-          })}
-          {/* CTA card sits at desktop position 3, mobile position 1 */}
-          <div className="flex-shrink-0 order-1 md:order-none" style={{}}>
-            <CtaCard />
-          </div>
+          })()}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
           {ROW3.map((g, i) => (
