@@ -17,6 +17,11 @@ import captainsparklezAvatar from "@/assets/avatars/captainsparklez.jpg";
 import aphmauAvatar from "@/assets/avatars/aphmau.jpg";
 import prestonplayzAvatar from "@/assets/avatars/prestonplayz.jpg";
 import ssundeeAvatar from "@/assets/avatars/ssundee.jpg";
+import unsortedpileAvatar from "@/assets/avatars/unsortedpile.jpg";
+import smallishbeansAvatar from "@/assets/avatars/smallishbeans.jpg";
+import lizzieAvatar from "@/assets/avatars/lizzie.jpg";
+import wattlesAvatar from "@/assets/avatars/wattles.jpg";
+import bikinibodhiAvatar from "@/assets/avatars/bikinibodhi.jpg";
 
 // Previews
 import mrbeast1 from "@/assets/previews/mrbeast-1.jpg";
