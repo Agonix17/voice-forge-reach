@@ -16,13 +16,6 @@ export function Contact() {
   const [error, setError] = useState(false);
   const [form, setForm] = useState({ youtubeUrl: "", email: "", message: "" });
 
-  useEffect(() => {
-    if (selectedPackage) return;
-    try {
-      const pkg = sessionStorage.getItem("selected_package");
-      if (pkg) setSelectedPackage(pkg);
-    } catch {}
-  }, [selectedPackage, setSelectedPackage]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
