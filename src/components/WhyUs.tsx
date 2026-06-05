@@ -1,4 +1,5 @@
 import { useT } from "@/lib/i18n";
+import { useCountUp, useInViewOnce } from "@/lib/useCountUp";
 
 const POINTS = [
   { en: "griefing", ru: "гриферство", noteKey: "why.p1.note" },
@@ -7,14 +8,26 @@ const POINTS = [
   { en: "speedrun PB", ru: "спидран ПБ", noteKey: "why.p4.note" },
 ];
 
+const STAT_DEFS = [
+  { target: 7, prefix: "", suffix: " yrs", labelKey: "why.stat1" },
+  { target: 200, prefix: "", suffix: "+", labelKey: "why.stat2" },
+  { target: 12, prefix: "", suffix: "B", labelKey: "why.stat3" },
+  { target: 98, prefix: "", suffix: "%", labelKey: "why.stat4" },
+];
+
+function StatItem({ target, prefix, suffix, label, start }: { target: number; prefix: string; suffix: string; label: string; start: boolean }) {
+  const v = useCountUp(target, { start });
+  return (
+    <div>
+      <div className="text-3xl font-bold text-primary tabular-nums">{prefix}{v}{suffix}</div>
+      <div className="text-sm text-muted-foreground mt-1">{label}</div>
+    </div>
+  );
+}
+
 export function WhyUs() {
   const { t } = useT();
-  const stats = [
-    { v: "7 yrs", l: t("why.stat1") },
-    { v: "200+", l: t("why.stat2") },
-    { v: "12B", l: t("why.stat3") },
-    { v: "98%", l: t("why.stat4") },
-  ];
+  const [sectionRef, inView] = useInViewOnce<HTMLElement>();
   return (
     <section id="why" className="py-14 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
