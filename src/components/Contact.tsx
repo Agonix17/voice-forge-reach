@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Check } from "lucide-react";
 import { useT } from "@/lib/i18n";
@@ -10,19 +10,12 @@ const PUBLIC_KEY = "2E_DVenRQODCOAZOp";
 
 export function Contact() {
   const { t } = useT();
-  const { selectedPackage, selectedAddons, setSelectedPackage, clearAll } = usePackageStore();
+  const { selectedPackage, selectedAddons, clearAll } = usePackageStore();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({ youtubeUrl: "", email: "", message: "" });
 
-  useEffect(() => {
-    if (selectedPackage) return;
-    try {
-      const pkg = sessionStorage.getItem("selected_package");
-      if (pkg) setSelectedPackage(pkg);
-    } catch {}
-  }, [selectedPackage, setSelectedPackage]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,9 +95,9 @@ export function Contact() {
                       <span className="font-semibold text-primary">{selectedPackage}</span>
                     </div>
                     {selectedAddons.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-1 border-t border-primary/20">
+                      <div className="flex flex-wrap gap-2 pt-2 border-t border-primary/20">
                         {selectedAddons.map((addon) => (
-                          <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/30 px-2 py-1 text-xs text-primary font-medium">
+                          <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-surface-elevated border border-border px-2 py-1 text-xs text-muted-foreground font-medium">
                             + {addon}
                           </span>
                         ))}

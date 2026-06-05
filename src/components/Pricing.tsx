@@ -101,7 +101,7 @@ export function Pricing() {
 
             <a
               href="#contact"
-              onClick={() => { setSelectedPackage(`${t("price.packName")} (${t("price.packPrice")})`); try { sessionStorage.setItem("selected_package", `${t("price.packName")} (${t("price.packPrice")})`); } catch {} }}
+              onClick={() => { setSelectedPackage(`${t("price.packName")} (${t("price.packPrice")})`); }}
 
               className="block text-center rounded-md bg-primary text-primary-foreground px-5 py-4 min-h-[52px] text-base font-semibold hover:opacity-90 transition-opacity"
             >
@@ -155,7 +155,7 @@ export function Pricing() {
               </div>
               <a
                 href="#contact"
-                onClick={() => { const addons = UPSELLS.filter(u => selected[u.id]).map(u => t(u.textKey)).join(", "); const pkg = `${t("price.packName")} ($${total})${addons ? " + " + addons : ""}`; setSelectedPackage(pkg); try { sessionStorage.setItem("selected_package", pkg); } catch {} }}
+                onClick={() => { setSelectedPackage(`${t("price.packName")} ($${total})`); }}
                 className="block text-center rounded-md border border-primary/40 bg-primary/10 text-primary px-5 py-3 min-h-[44px] text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 {t("price.lockIn")}
