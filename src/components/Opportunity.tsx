@@ -360,32 +360,27 @@ export function Opportunity() {
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
           {/*
-            ROW2 source order: Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau
-            Desktop final:    Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau (CTA at pos 3, where CaptainSparklez was)
-            Mobile final:     Techno, CTA,    Grian, Stampy, Mumbo, Bikini, Aphmau (CTA at Stampy's pos)
+            Desktop final order: Techno, Stampy, Grian, CTA, Mumbo, Bikini, Aphmau
+            Mobile final order:  Techno, CTA,    Grian, Stampy, Mumbo, Bikini, Aphmau
+            (CTA and Stampy swap between breakpoints — same component instance)
           */}
           {(() => {
-            const orderMap = [
-              { mobile: 0, desktop: 0 }, // Techno
-              { mobile: 3, desktop: 1 }, // Stampy
-              { mobile: 2, desktop: 2 }, // Grian
-              { mobile: 4, desktop: 4 }, // Mumbo
-              { mobile: 5, desktop: 5 }, // Bikini
-              { mobile: 6, desktop: 6 }, // Aphmau
+            // mobile order, desktop order
+            const orderClasses = [
+              "order-[0] md:order-[0]", // Techno
+              "order-[3] md:order-[1]", // Stampy
+              "order-[2] md:order-[2]", // Grian
+              "order-[4] md:order-[4]", // Mumbo
+              "order-[5] md:order-[5]", // Bikini
+              "order-[6] md:order-[6]", // Aphmau
             ];
             return (
               <>
-                {ROW2.map((g, i) => {
-                  const o = orderMap[i];
-                  return (
-                    <div
-                      key={`r2-${i}`}
-                      className={`flex-shrink-0 order-[${o.mobile}] md:order-[${o.desktop}]`}
-                    >
-                      <GiantCard g={g} i={i} />
-                    </div>
-                  );
-                })}
+                {ROW2.map((g, i) => (
+                  <div key={`r2-${i}`} className={`flex-shrink-0 ${orderClasses[i]}`}>
+                    <GiantCard g={g} i={i} />
+                  </div>
+                ))}
                 <div className="flex-shrink-0 order-[1] md:order-[3]">
                   <CtaCard />
                 </div>
