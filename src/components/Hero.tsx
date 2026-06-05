@@ -107,8 +107,23 @@ export function Hero() {
 
   const onScrub = (e: React.ChangeEvent<HTMLInputElement>) => {
     const t = Number(e.target.value);
-    if (videoRef.current) videoRef.current.currentTime = t;
-    if (audioRef.current) audioRef.current.currentTime = t;
+    const video = videoRef.current;
+    const audio = audioRef.current;
+    if (!video || !audio) return;
+
+    if (video.readyState < 2) {
+      const onReady = () => {
+        video.currentTime = t;
+        audio.currentTime = t;
+        setCurrentTime(t);
+      };
+      video.addEventListener("canplay", onReady, { once: true });
+      video.load();
+      return;
+    }
+
+    video.currentTime = t;
+    audio.currentTime = t;
     setCurrentTime(t);
   };
 
