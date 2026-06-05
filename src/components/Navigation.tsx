@@ -18,11 +18,11 @@ function LanguageSwitcher() {
       <img
         src={flagSrc[next]}
         alt={labels[next]}
-        width={20}
-        height={14}
-        className="w-5 h-[14px] rounded-none object-cover border border-border/60"
-        style={{ borderRadius: 0 }}
+        width={24}
+        height={16}
+        className="w-6 h-4 rounded-sm object-cover border border-border/60"
       />
+
       <span className="uppercase tracking-wider">{labels[next]}</span>
     </button>
   );

@@ -81,6 +81,11 @@ import wattles3 from "@/assets/previews/wattles-3.jpg";
 import bikinibodhi1 from "@/assets/previews/bikinibodhi-1.jpg";
 import bikinibodhi2 from "@/assets/previews/bikinibodhi-2.jpg";
 import bikinibodhi3 from "@/assets/previews/bikinibodhi-3.jpg";
+import joelAvatar from "@/assets/avatars/joel.jpg";
+import joel1 from "@/assets/previews/joel-1.jpg";
+import joel2 from "@/assets/previews/joel-2.jpg";
+import joel3 from "@/assets/previews/joel-3.jpg";
+
 
 type Preview = { thumbnail: string; views: string };
 type Giant = {
@@ -193,6 +198,14 @@ const ROW2: Giant[] = [
     ],
   },
   {
+    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: bikinibodhi1, views: "12M" },
+      { thumbnail: bikinibodhi2, views: "8.7M" },
+      { thumbnail: bikinibodhi3, views: "6.3M" },
+    ],
+  },
+  {
     name: "Aphmau", handle: "@Aphmau", logo: aphmauAvatar, uplift: "+31%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: aphmau1, views: "72M" },
@@ -201,6 +214,7 @@ const ROW2: Giant[] = [
     ],
   },
 ];
+
 
 const ROW3: Giant[] = [
   {
@@ -236,14 +250,15 @@ const ROW3: Giant[] = [
     ],
   },
   {
-    name: "Bikini Bodhi", handle: "@BikiniBodhi", logo: bikinibodhiAvatar, uplift: "+28%", globalWatchTime: "Global Watch Time",
+    name: "Joel (Smallishbeansalt)", handle: "@Smallishbeansalt", logo: joelAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
     previews: [
-      { thumbnail: bikinibodhi1, views: "12M" },
-      { thumbnail: bikinibodhi2, views: "8.7M" },
-      { thumbnail: bikinibodhi3, views: "6.3M" },
+      { thumbnail: joel1, views: "10M" },
+      { thumbnail: joel2, views: "7.4M" },
+      { thumbnail: joel3, views: "5.1M" },
     ],
   },
 ];
+
 
 function GiantCard({ g, i }: { g: Giant; i: number }) {
   return (
@@ -345,17 +360,18 @@ export function Opportunity() {
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-140px)" }}>
           {ROW2.map((g, i) => (
-            <Fragment key={`r2-${i}`}>
-              {i === 5 && <CtaCard />}
-              <GiantCard g={g} i={i} />
-            </Fragment>
+            <GiantCard key={`r2-${i}`} g={g} i={i} />
           ))}
         </div>
         <div className="flex gap-5 px-6" style={{ transform: "translateX(-90px)" }}>
           {ROW3.map((g, i) => (
-            <GiantCard key={`r3-${i}`} g={g} i={i} />
+            <Fragment key={`r3-${i}`}>
+              {i === 4 && <CtaCard />}
+              <GiantCard g={g} i={i} />
+            </Fragment>
           ))}
         </div>
+
       </div>
     </section>
   );
