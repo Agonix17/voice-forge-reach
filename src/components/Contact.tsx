@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
 import { useT } from "@/lib/i18n";
+import { usePackageStore } from "@/lib/selectedPackage";
 
 const SERVICE_ID = "service_osvzh0c";
 const TEMPLATE_ID = "template_gd05agv";
@@ -8,17 +9,26 @@ const PUBLIC_KEY = "2E_DVenRQODCOAZOp";
 
 export function Contact() {
   const { t } = useT();
+  const { selectedPackage, setSelectedPackage } = usePackageStore();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({ youtubeUrl: "", email: "", package: "", message: "" });
 
   useEffect(() => {
+    if (selectedPackage) {
+      setForm((f) => ({ ...f, package: selectedPackage }));
+      return;
+    }
     try {
       const pkg = sessionStorage.getItem("selected_package");
-      if (pkg) setForm((f) => ({ ...f, package: pkg }));
+      if (pkg) {
+        setForm((f) => ({ ...f, package: pkg }));
+        setSelectedPackage(pkg);
+      }
     } catch {}
-  }, []);
+  }, [selectedPackage, setSelectedPackage]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
