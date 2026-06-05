@@ -93,35 +93,26 @@ export function Contact() {
 
               <div>
                 {selectedPackage ? (
-                  <div className="rounded-xl border border-primary/40 bg-primary/10 p-4">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                        Selected Package
-                      </div>
-                      <a href="#pricing" className="text-xs text-primary underline">Change plan →</a>
+                  <div className="rounded-xl border border-primary/40 bg-primary/10 p-4 space-y-3">
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                      Selected Package
                     </div>
                     <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary" />
-                      <span className="font-semibold text-primary text-sm">{selectedPackage}</span>
+                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="font-semibold text-primary">{selectedPackage}</span>
                     </div>
                     {selectedAddons.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex flex-wrap gap-2 pt-1 border-t border-primary/20">
                         {selectedAddons.map((addon) => (
                           <span key={addon} className="inline-flex items-center gap-1 rounded-md bg-primary/15 border border-primary/30 px-2 py-1 text-xs text-primary font-medium">
-                            <Check className="w-3 h-3" /> {addon}
+                            + {addon}
                           </span>
                         ))}
                       </div>
                     )}
-                    {!submitted && (
-                      <button
-                        type="button"
-                        onClick={() => { clearAll(); try { sessionStorage.removeItem("selected_package"); } catch {} }}
-                        className="mt-3 text-xs text-muted-foreground hover:text-foreground underline"
-                      >
-                        Clear selection
-                      </button>
-                    )}
+                    <a href="#pricing" className="text-xs text-muted-foreground underline block">
+                      Change plan →
+                    </a>
                   </div>
                 ) : (
                   <div className="rounded-xl border border-border bg-surface p-4 text-muted-foreground text-sm flex items-center justify-between gap-3">
@@ -142,15 +133,35 @@ export function Contact() {
                   className="w-full bg-input border border-border rounded-md px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors resize-none disabled:opacity-60"
                 />
               </div>
-              <button
-                type="submit"
-                disabled={loading || submitted}
-                className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-100 disabled:cursor-default"
-              >
-                {submitted ? "✓ Заявка отправлена" : loading ? "..." : t("contact.submit")}
-              </button>
-              {submitted && (
-                <p className="text-sm text-center text-primary">{t("contact.received.sub")}</p>
+              {submitted ? (
+                <div className="space-y-4 text-center">
+                  <div className="text-primary font-semibold flex items-center justify-center gap-2">
+                    <Check className="w-5 h-5" /> Заявка отправлена
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Мы свяжемся с вами в течение 24 часов
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setForm({ youtubeUrl: "", email: "", message: "" });
+                      clearAll();
+                      try { sessionStorage.removeItem("selected_package"); } catch {}
+                    }}
+                    className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-surface-elevated transition-colors"
+                  >
+                    Сбросить и отправить новую заявку
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-md hover:opacity-90 transition-opacity disabled:opacity-60"
+                >
+                  {loading ? "..." : t("contact.submit")}
+                </button>
               )}
               {error && (
                 <p className="text-sm text-center text-destructive">Ошибка, попробуйте снова</p>
