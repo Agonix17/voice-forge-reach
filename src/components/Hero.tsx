@@ -41,6 +41,9 @@ const fmt = (s: number) => {
 
 export function Hero() {
   const { t } = useT();
+  const stat1 = useCountUp(40);
+  const stat2 = useCountUp(30);
+  const stat3 = useCountUp(72);
   const [mode, setMode] = useState<Mode>("original");
   const s = MODE_STYLES[mode];
 
