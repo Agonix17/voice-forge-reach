@@ -242,6 +242,14 @@ const ROW3: Giant[] = [
     ],
   },
   {
+    name: "CaptainSparklez", handle: "@CaptainSparklez", logo: captainsparklezAvatar, uplift: "+33%", globalWatchTime: "Global Watch Time",
+    previews: [
+      { thumbnail: captainsparklez1, views: "48M" },
+      { thumbnail: captainsparklez2, views: "36M" },
+      { thumbnail: captainsparklez3, views: "29M" },
+    ],
+  },
+  {
     name: "Joel (Smallishbeansalt)", handle: "@Smallishbeansalt", logo: joelAvatar, uplift: "+27%", globalWatchTime: "Global Watch Time",
     previews: [
       { thumbnail: joel1, views: "10M" },
