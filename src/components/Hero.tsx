@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Check, X, Mic, Play, Pause } from "lucide-react";
 import { useT } from "@/lib/i18n";
+import { useCountUp } from "@/lib/useCountUp";
 
 type Mode = "original" | "auto" | "vox";
 
